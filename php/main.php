@@ -1,4 +1,5 @@
 <?php
+require("login.php");
 // Get the request method
 $method = $_SERVER['REQUEST_METHOD'];
 // Get the request itself
@@ -7,8 +8,10 @@ $request = explode("/", substr(@$_SERVER['PATH_INFO'], 1));
 // Pass along the request to its appropriate function, depending on type
 switch ($method) {
   case 'PUT':
-    // none for put  
-    break;
+    // none for put
+      $mylogin = new Login('asd','asdasd');
+      $mylogin.testDatabase('asd','asdasd');
+      break;
   case 'POST':
     // Parse the input; is the client creating a user account, posting a message, or logging in?
     
