@@ -1,6 +1,10 @@
 <?php
+// Dependencies
 require("Login.php");
 require("CreateUser.php");
+require("EntryReturn.php");
+require("SendEntry.php");
+
 // Get the request method
 $method = $_SERVER['REQUEST_METHOD'];
 // Get the request itself
@@ -22,17 +26,16 @@ switch ($method) {
       CreateUser::createNewUser($obj->{"CreateUser"},$obj->{"CreatePassword"},$obj->{"CreateEmail"});
     }
     // If an entry is being created:
-    else if($obj->{"Message"} !=null) {
-      
-
-
+    else if($obj->{"Content"} !=null) {
+      SendEntry::sendJournalEntry($obj->{"Header"},$obj->{"Content"},$obj->{"UserID"});
     }
-
     break;
   case 'GET':
     if($obj->{"Username"} !=null) {
-      Login::login($obj->{"Username"},$obj->{"Password"});
+      $userID = Login::userLogin($obj->{"Username"},$obj->{"Password"});
+      EntryReturn::getEntries($userID);
     }
+    
     
     // Get messages corresponding to the user's id. User's username and password should be passed along to this.  
     break;
