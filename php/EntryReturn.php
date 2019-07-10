@@ -20,10 +20,12 @@ class EntryReturn {
         // Run query and save result
         $query_result = mysqli_query($db_connection,$sql);
         
+        // Loop through query and convert it to JSON format.
         $rows = array();
         while($r = mysqli_fetch_assoc($query_result)) {
             $rows[] = $r;
         }
+        
         echo json_encode($rows);
 
     }
