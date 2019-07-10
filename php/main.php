@@ -23,7 +23,7 @@ switch ($method) {
     // Get messages corresponding to the user's id. User's username and password should be passed along to this.  
     break;
   default:
-  echo "hi";
+    echo "error";
     handle_error($request);  
     break;
 }
