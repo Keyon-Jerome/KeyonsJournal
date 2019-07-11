@@ -36,6 +36,8 @@ class CreateUser {
         $username = mysqli_real_escape_string($db_connection,$username);
         $password = mysqli_real_escape_string($db_connection,$password);
 
+        $encrypted_password = generateHash($password);
+
         // Handle connection errors
         if ($db_connection->connect_error) {
             die("Connection failed: " . $db_connection->connect_error);
@@ -50,7 +52,7 @@ class CreateUser {
         $UserID = CreateUser::generateUserID($db_connection);
 
         // Define the query, adding a new user 
-        $sql = "INSERT INTO UserTable (Username,Password, Email,UserID) VALUES ('$username','$password','$email','$UserID');";
+        $sql = "INSERT INTO UserTable (Username,Password, Email,UserID) VALUES ('$username','$encrypted_password','$email','$UserID');";
         
         // Run the query and echo the response (success or fail)
         if ($db_connection->query($sql) === TRUE) {
@@ -60,7 +62,7 @@ class CreateUser {
         }
 
     }
-    
+
     // Check if a given field under a given column already exists (e.g: check if username already exists)
     public static function checkIfExists($wantedName,$db_connec,$tableName,$field) {
 
@@ -77,6 +79,18 @@ class CreateUser {
             return false;
         }
     }
+
+    function generateHash($password) {
+        if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
+            $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
+            return crypt($password, $salt);
+        }
+        else {
+            return "Hash generation failure!";
+        }
+    }
+
+
 }
 
 ?>

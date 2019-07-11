@@ -13,9 +13,12 @@ class Login {
         $username = mysqli_real_escape_string($db_connection,$username);
         $password = mysqli_real_escape_string($db_connection,$password);
 
+        $encrypted_password = generateHash($password);
+
+
         if($username !="" && $password !="") {
 
-            $sql = "SELECT UserID FROM UserTable where Username = '$username' and Password = '$password'";
+            $sql = "SELECT UserID FROM UserTable where Username = '$username' and `Password` = '$encrypted_password'";
             $query_result = mysqli_query($db_connection,$sql);
             $assoc_array = $query_result->fetch_assoc();
             $json = json_encode($assoc_array);
@@ -49,5 +52,15 @@ class Login {
              
     }
     */
+
+    function generateHash($password) {
+        if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
+            $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
+            return crypt($password, $salt);
+        }
+        else {
+            return "Hash generation failure!";
+        }
+    }
 }
 ?>
