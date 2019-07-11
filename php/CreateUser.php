@@ -3,14 +3,21 @@
 class CreateUser {
     private $databaseini;
     
-    private static function generateUserID() {
-        /*
-        $factory = new \RandomLib\Factory();
-        $generator = $factory->getGenerator(new \SecurityLib\Strength(\SecurityLib\Strength::MEDIUM));
-        $randomString = $generator->generateString(32, 'abcdef');
-        return $randomString;
-        */
-        $id = random_bytes(16);
+    // Generate a cryptographically secure user ID
+    private static function generateUserID($db_con) {
+
+        // Define fields
+        $UserIDField = 'UserID';
+        $tableName = 'UserTable';
+        $userIDExists = true;
+
+        // While the generated User ID already exists in the database, continue generating it
+        // (unlikely, but still a potential error)
+        while($userIDExists) {
+            $id = bin2hex(random_bytes(16));
+            $userIDExists = CreateUser::checkIfExists($id,$db_con,$tableName,$UserIDField);
+        }
+        // Return an unused user ID
         return $id;
     }
 
@@ -33,9 +40,14 @@ class CreateUser {
         if ($db_connection->connect_error) {
             die("Connection failed: " . $db_connection->connect_error);
         }
+        
+        // Check if the username already exists
+        if(CreateUser::checkIfExists($username,$db_connection,'UserTable','Username')) {
+            die('Username already exists.');
+        }
 
         // Generate UserID
-        $UserID = CreateUser::generateUserID();
+        $UserID = CreateUser::generateUserID($db_connection);
 
         // Define the query, adding a new user 
         $sql = "INSERT INTO UserTable (Username,Password, Email,UserID) VALUES ('$username','$password','$email','$UserID');";
@@ -47,6 +59,23 @@ class CreateUser {
             echo "Error: " . $sql . "<br>" . $db_connection->error;
         }
 
+    }
+    
+    // Check if a given field under a given column already exists (e.g: check if username already exists)
+    public static function checkIfExists($wantedName,$db_connec,$tableName,$field) {
+
+        // define query, selecting duplicate fields
+        $sqlquery  = "SELECT $field FROM $tableName WHERE $field='$wantedName';";
+
+        // Run query and save result
+        $queryResult = mysqli_query($db_connec, $sqlquery);
+        
+        // If that field already exists, return true
+        if(mysqli_num_rows($queryResult)>=1){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 

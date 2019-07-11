@@ -31,5 +31,7 @@ class SendEntry {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
     }
+
+    
 }
 ?>

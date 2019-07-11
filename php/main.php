@@ -1,4 +1,6 @@
 <?php
+
+//phpinfo();
 // Dependencies
 require("Login.php");
 require("CreateUser.php");
