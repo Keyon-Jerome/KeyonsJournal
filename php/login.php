@@ -1,5 +1,5 @@
 <?php
-
+require("CreateUser.php");
 class Login {
     
     private $databaseini;
@@ -13,7 +13,7 @@ class Login {
         $username = mysqli_real_escape_string($db_connection,$username);
         $password = mysqli_real_escape_string($db_connection,$password);
 
-        $encrypted_password = generateHash($password);
+        $encrypted_password = CreateUser::generateHash($password);
 
 
         if($username !="" && $password !="") {
@@ -53,14 +53,5 @@ class Login {
     }
     */
 
-    function generateHash($password) {
-        if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
-            $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
-            return crypt($password, $salt);
-        }
-        else {
-            return "Hash generation failure!";
-        }
-    }
 }
 ?>
