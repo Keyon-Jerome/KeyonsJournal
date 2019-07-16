@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~bootstrap/dist/css/bootstrap.min.css';
-
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .full-screen {
   height:100vh;
@@ -8,18 +8,7 @@
   position: absolute;
 }
 
-.journal-font {
 
-font-family: Roboto;
-font-style: normal;
-font-weight: 375;
-font-size: 64px;
-line-height: 75px;
-text-align: center;
-color: #434141;
-
-
-}
 .greyRoboto {
   font-family: Roboto;
   font-style: normal;
@@ -27,13 +16,14 @@ color: #434141;
   color: #434141;
 }
 .bg-login {
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #333A4A;
+  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #081F59;
+  /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #661418; */
   background-repeat: no-repeat;
   background-size: auto;
 
   }
   .mat-form-field-underline,  .mat-form-field-ripple {
-    background-color: rgb(255, 255,255) !important;
+    background-color:#3f51b5!important;
 
   }
   .mat-input-element, .mat-form-field{
@@ -43,6 +33,6 @@ color: #434141;
   }
 
   .mat-form-field-empty.mat-form-field-label {
-    color: white;
+    color: black;
 }
 /* https://stackoverflow.com/questions/50604345/how-to-color-text-input-in-angular-material/50605823*/

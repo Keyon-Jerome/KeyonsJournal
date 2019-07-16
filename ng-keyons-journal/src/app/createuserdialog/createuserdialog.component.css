@@ -1,0 +1,8 @@
+.mat-input-element, .mat-form-field{
+  color:black;
+  caret-color: black;
+
+}
+.form-label-color {
+  color: rgb(52, 74, 110);
+}

@@ -9,12 +9,18 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { CreateuserdialogComponent } from './createuserdialog/createuserdialog.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    CreateuserdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +30,16 @@ import {MatIconModule} from '@angular/material/icon';
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    MatIconModule
+    MatIconModule,
+    MatChipsModule,
+    MatDialogModule,
+    HttpClientModule,
+    FormsModule
+    // MatDialogRef,
+
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CreateuserdialogComponent],
 })
 export class AppModule { }

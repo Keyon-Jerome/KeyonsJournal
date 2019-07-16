@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>Create User</h1>
+<div mat-dialog-content>
+    <mat-form-field class="form-sizer" appearance="fill" >
+        <mat-label class="form-label-color" >Username</mat-label>
+        <input matInput placeholder=""  [(ngModel)]="username">
+      </mat-form-field>
+      <mat-form-field class="form-sizer" appearance="fill" >
+          <mat-label class="form-label-color">Email</mat-label>
+          <input matInput placeholder=""  [(ngModel)]="email">
+        </mat-form-field>
+  <mat-form-field appearance="fill" class="form-sizer">
+      <mat-label class="form-label-color">Password</mat-label>
+      <input matInput placeholder="" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <!-- [mat-dialog-close]="data.animal" -->
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button  cdkFocusInitial (click)="onSubmit()">Submit</button>
+</div>
+<style>
+
+</style>
+

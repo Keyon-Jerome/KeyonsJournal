@@ -1,0 +1,49 @@
+.journal-font {
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 375;
+  font-size: 90px;
+  line-height: 75px;
+  text-align: center;
+  color: #434141;
+
+
+  }
+  .height100VH {
+    height:100vh;
+  }
+  .mat-input-wrapper {
+    background: white;
+  }
+
+  .content {
+    margin-top:-12.5vh;
+
+  }
+  .expanded {
+    margin-top:-1.25vh;
+  }
+  .button-sizer {
+    width:100%;
+
+  }
+  .form-sizer {
+    width:100%;
+  }
+
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background: rgba(255, 255, 255, 0.5);
+  /* background: #3f51b5' */
+}
+#x {
+  margin-top:-20vh;
+}
+/*
+  ::ng-deep.mat-form-field-appearance-fill, .mat-form-field-flex {
+  background: rgba(255, 255, 255, 0.5);
+  padding:0 !important;
+
+  }
+*/
