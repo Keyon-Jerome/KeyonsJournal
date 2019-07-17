@@ -2,24 +2,30 @@
 <div mat-dialog-content>
     <mat-form-field class="form-sizer" appearance="fill" >
         <mat-label class="form-label-color" >Username</mat-label>
-        <input matInput placeholder=""  [(ngModel)]="username">
+        <input matInput placeholder=""  [formControl]="username" required>
+        <mat-error *ngIf="username.invalid">{{getUsernameErrorMessage()}}</mat-error>
       </mat-form-field>
       <mat-form-field class="form-sizer" appearance="fill" >
           <mat-label class="form-label-color">Email</mat-label>
-          <input matInput placeholder=""  [(ngModel)]="email">
+          <input matInput placeholder="Input email"  [formControl]="email" required>
+          <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
         </mat-form-field>
   <mat-form-field appearance="fill" class="form-sizer">
       <mat-label class="form-label-color">Password</mat-label>
-      <input matInput placeholder="" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
+      <input #pass matInput placeholder="" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+      <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
     </mat-form-field>
-</div>
+
+  </div>
+
 <div mat-dialog-actions>
     <!-- [mat-dialog-close]="data.animal" -->
   <button mat-button (click)="onCancel()">Cancel</button>
   <button mat-button  cdkFocusInitial (click)="onSubmit()">Submit</button>
+  <!--<mat-error *ngIf="isFormFinished()">Form not finished.</mat-error>-->
 </div>
 <style>
 

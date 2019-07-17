@@ -13,7 +13,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CreateuserdialogComponent } from './createuserdialog/createuserdialog.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,8 @@ import { FormsModule } from '@angular/forms';
     MatChipsModule,
     MatDialogModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
     // MatDialogRef,
 
   ],

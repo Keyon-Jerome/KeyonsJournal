@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { UserService } from '../user.service';
+import { FormControl, Validators } from '@angular/forms';
 export interface DialogData {
   animal: string;
   name: string;
@@ -14,19 +15,49 @@ export interface DialogData {
 })
 export class CreateuserdialogComponent implements OnInit {
   hide = true;
-  form: {username:string,password:string,email:string};
-  username: string;
-  password: string;
-  email: string;
+  form: {username: string, password: string, email: string};
+  username  = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
+  password = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
+  email = new FormControl('', [Validators.required, Validators.email]);
+
   constructor( public dialogRef: MatDialogRef<CreateuserdialogComponent>,
-               @Inject(MAT_DIALOG_DATA) public data: DialogData, private userService:UserService) { }
+               @Inject(MAT_DIALOG_DATA) public data: DialogData, private userService: UserService) { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
-    this.userService.createUser(this.username, this.password,this.email);
+
+  getEmailErrorMessage() {
+    return this.email.hasError('required') ? 'You must enter a value' :
+        this.email.hasError('email') ? 'Not a valid email' :
+            '';
   }
+  getUsernameErrorMessage() {
+    if (this.username.hasError('required')) { return 'You must enter a value'; }
+    else if (this.username.hasError('minlength')) { return 'Username must be at least 5 characters long'; }
+    else if (this.username.hasError('maxlength')) { return 'Username must be under 25 characters long.'; }
+    else {
+      return '';
+      }
+  }
+  getPasswordErrorMessage() {
+    if (this.password.hasError('required')) { return 'You must enter a value'; }
+    else if (this.password.hasError('minlength')) { return 'Password must be at least 5 characters long'; }
+    else if (this.password.hasError('maxlength')) { return 'Password must be under 25 characters long.'; }
+    else {
+      return '';
+      }
+  }
+
+  isFormFinished() {
+    return  this.getEmailErrorMessage() == '' && this.getPasswordErrorMessage() == '';
+  }
+  onSubmit() {
+    if (this.isFormFinished()) {
+      this.userService.createUser(this.username.value, this.password.value, this.email.value);
+    }
+  }
+
   onCancel(): void {
     this.dialogRef.close();
   }

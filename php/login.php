@@ -1,5 +1,4 @@
 <?php
-require("CreateUser.php");
 class Login {
     
     private $databaseini;
@@ -13,7 +12,7 @@ class Login {
         $username = mysqli_real_escape_string($db_connection,$username);
         $password = mysqli_real_escape_string($db_connection,$password);
 
-        $encrypted_password = CreateUser::generateHash($password);
+        $encrypted_password = CreateNewUser::generateHash($password);
 
 
         if($username !="" && $password !="") {

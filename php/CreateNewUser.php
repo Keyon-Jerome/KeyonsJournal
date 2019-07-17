@@ -1,6 +1,6 @@
 <?php
 
-class CreateUser {
+class CreateNewUser {
     private $databaseini;
     
     // Generate a cryptographically secure user ID
@@ -15,14 +15,14 @@ class CreateUser {
         // (unlikely, but still a potential error)
         while($userIDExists) {
             $id = bin2hex(random_bytes(16));
-            $userIDExists = CreateUser::checkIfExists($id,$db_con,$tableName,$UserIDField);
+            $userIDExists = CreateNewUser::checkIfExists($id,$db_con,$tableName,$UserIDField);
         }
         // Return an unused user ID
         return $id;
     }
 
     // Create a new user in the database
-    public static function createNewUser($username,$password,$email) {
+    public static function createUser($username,$password,$email) {
 
   
         
@@ -36,30 +36,47 @@ class CreateUser {
         $username = mysqli_real_escape_string($db_connection,$username);
         $password = mysqli_real_escape_string($db_connection,$password);
 
-        $encrypted_password = CreateUser::generateHash($password);
+        $encrypted_password = CreateNewUser::generateHash($password);
 
         // Handle connection errors
         if ($db_connection->connect_error) {
-            die("Connection failed: " . $db_connection->connect_error);
+            
+            $failMessage = ("Connection failed: " . $db_connection->connect_error);
+            $failMessageArray = array('status' =>$failMessage);
+            $failMessageJSON =  json_encode($failMessageArray);
+            die($failMessageJSON);
         }
         
         // Check if the username already exists
-        if(CreateUser::checkIfExists($username,$db_connection,'UserTable','Username')) {
-            die('Username already exists.');
+        if(CreateNewUser::checkIfExists($username,$db_connection,'UserTable','Username')) {
+                        
+            $failMessage = ("Username already exists.");
+            $failMessageArray = array('status' =>$failMessage);
+            $failMessageJSON =  json_encode($failMessageArray);
+            die($failMessageJSON);
         }
 
         // Generate UserID
-        $UserID = CreateUser::generateUserID($db_connection);
+        $UserID = CreateNewUser::generateUserID($db_connection);
 
         // Define the query, adding a new user 
         $sql = "INSERT INTO UserTable (Username,Password, Email,UserID) VALUES ('$username','$encrypted_password','$email','$UserID');";
-        
+
+        // Define the status; did anything fail?
+        $status = '';
+
         // Run the query and echo the response (success or fail)
         if ($db_connection->query($sql) === TRUE) {
-            echo "User created successfully!";
+            $status = "User created successfully!";
         } else {
-            echo "Error: " . $sql . "<br>" . $db_connection->error;
+            $status =  "Error: " . $sql . "<br>" . $db_connection->error;
         }
+        
+        // Convert the status to a JSON, and echo it
+        $returnArray = array('status'=> $status, 'UserID' => $UserID);
+        $returnJSON = json_encode($returnArray);
+
+        echo $returnJSON;
 
     }
 
