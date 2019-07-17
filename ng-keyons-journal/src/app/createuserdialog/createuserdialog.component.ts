@@ -51,7 +51,7 @@ export class CreateuserdialogComponent implements OnInit {
   }
 
   isFormFinished() {
-    return  this.getEmailErrorMessage() == '' && this.getPasswordErrorMessage() == '';
+    return  this.getEmailErrorMessage() === '' && this.getPasswordErrorMessage() === '' && this.getUsernameErrorMessage() == '';
   }
   onSubmit() {
     if (this.isFormFinished()) {

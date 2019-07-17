@@ -21,11 +21,12 @@
   opacity:0.5;
 }
 .bg-login {
-  background-image:url(./assets/undrawprogressbackground.svg);
+  /* background-image:url(./assets/undrawprogressbackground.svg); */
+  background-image:url('./assets/undraw_conference_uo36.svg');
   /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #081F59;
   /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #661418; */
   background-repeat: no-repeat;
-  background-size:contain;
+  background-size:cover;
   background-position: center center;
 
   }
@@ -36,7 +37,7 @@
   /*background-color:white!important;
  */ }
   .mat-input-element, .mat-form-field{
-    color:white;
+    color:black;
     caret-color: white;
 
   }

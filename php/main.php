@@ -4,7 +4,7 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Request-Headers: X-Requested-With, Origin, Content-Type, X-Auth-Token');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, access-control-allow-origin, access-control-allow-headers, access-control-allow-methods, observe');
-
+// header('Content-type: application/json');
 
 
 //phpinfo();
@@ -38,12 +38,14 @@ switch ($method) {
     else if(property_exists($obj,"Content")) {
       SendEntry::sendJournalEntry($obj->{"Header"},$obj->{"Content"},$obj->{"UserID"});
     }
-    break;
-  case 'GET':
-    if($obj->{"Username"} !=null) {
-      $userID = Login::userLogin($obj->{"Username"},$obj->{"Password"});
-      EntryReturn::getEntries($userID);
+
+    else if(property_exists($obj,"loginUsername")) {
+      $userID = Login::userLogin($obj->{"loginUsername"},$obj->{"loginPassword"});
+     // EntryReturn::getEntries($userID);
     }
+    break;
+
+  case 'GET':
     
     
     // Get messages corresponding to the user's id. User's username and password should be passed along to this.  

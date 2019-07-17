@@ -20,18 +20,38 @@ class Login {
             $sql = "SELECT UserID FROM UserTable where Username = '$username' and `Password` = '$encrypted_password'";
             $query_result = mysqli_query($db_connection,$sql);
             $assoc_array = $query_result->fetch_assoc();
-            $json = json_encode($assoc_array);
+            //$json =  rtrim($assoc_array, '[]');
+            // $json = json_encode($assoc_array);
+
+            $userIDArray = array('UserID'=>$assoc_array['UserID']);
+            $userIDJSON = json_encode($userIDArray);
             
             //$row = mysqli_fetch_row($query_result);
             //echo $row;
-            // $json = json_encode($row);
-           // echo $json;
+            //$json = json_encode($row);
+           // $imploded= implode(' ',$assoc_array);
+           // $exploded = explode( ' ', $imploded);
+
+           // $returnArray = array('UserID' => $imploded);
+            //$returnJSON = json_encode($returnArray,JSON_UNESCAPED_UNICODE);
+           // $returnJSON = JSON.parse($returnJSON);
+            //echo $json;
+          //  $res = preg_replace("/[^a-zA-Z0-9]/", "", $returnJSON);
+           // $res = rtrim($res,"[]");
+            echo $userIDJSON;
+            // echo "{'UserID':'aecb7458a675d1b1cb63ed8841abcf9e'}";
+            // echo "hello\n";
         }
         else {
-            echo "Blank username or password field.";
+            $failMessage = "Blank username or password field" . " " . $username . " " . $password;
+            $failMessageArray = array('status' =>$failMessage);
+            $failMessageJSON =  json_encode($failMessageArray);
+            die($failMessageJSON);
+            
         }
+        //echo $userIDJSON;
         //echo $assoc_array["UserID"];
-        return $assoc_array["UserID"];
+        
     }
 /*
     public function testDatabase() {
