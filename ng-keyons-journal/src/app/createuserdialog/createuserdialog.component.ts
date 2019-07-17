@@ -16,7 +16,7 @@ export interface DialogData {
 export class CreateuserdialogComponent implements OnInit {
   hide = true;
   form: {username: string, password: string, email: string};
-  username  = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
+  username  = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]);
   password = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
   email = new FormControl('', [Validators.required, Validators.email]);
 
@@ -24,6 +24,7 @@ export class CreateuserdialogComponent implements OnInit {
                @Inject(MAT_DIALOG_DATA) public data: DialogData, private userService: UserService) { }
 
   ngOnInit() {
+
   }
 
 
@@ -35,7 +36,7 @@ export class CreateuserdialogComponent implements OnInit {
   getUsernameErrorMessage() {
     if (this.username.hasError('required')) { return 'You must enter a value'; }
     else if (this.username.hasError('minlength')) { return 'Username must be at least 5 characters long'; }
-    else if (this.username.hasError('maxlength')) { return 'Username must be under 25 characters long.'; }
+    else if (this.username.hasError('maxlength')) { return 'Username must be under 16 characters long.'; }
     else {
       return '';
       }

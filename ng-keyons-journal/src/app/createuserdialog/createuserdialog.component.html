@@ -2,7 +2,7 @@
 <div mat-dialog-content>
     <mat-form-field class="form-sizer" appearance="fill" >
         <mat-label class="form-label-color" >Username</mat-label>
-        <input matInput placeholder=""  [formControl]="username" required>
+        <input matInput   [(formControl)]="username"  required>
         <mat-error *ngIf="username.invalid">{{getUsernameErrorMessage()}}</mat-error>
       </mat-form-field>
       <mat-form-field class="form-sizer" appearance="fill" >

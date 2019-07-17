@@ -14,18 +14,27 @@
   font-style: normal;
   font-weight: normal;
   color: #434141;
+
+
+}
+.makeOpaque {
+  opacity:0.5;
 }
 .bg-login {
-  background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #081F59;
+  background-image:url(./assets/undrawprogressbackground.svg);
+  /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #081F59;
   /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #661418; */
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size:contain;
+  background-position: center center;
 
   }
   .mat-form-field-underline,  .mat-form-field-ripple {
     background-color:#3f51b5!important;
 
-  }
+
+  /*background-color:white!important;
+ */ }
   .mat-input-element, .mat-form-field{
     color:white;
     caret-color: white;
@@ -33,6 +42,8 @@
   }
 
   .mat-form-field-empty.mat-form-field-label {
-    color: black;
-}
+    /*color: #3f51b5;
+    */
+    color:black;
+  }
 /* https://stackoverflow.com/questions/50604345/how-to-color-text-input-in-angular-material/50605823*/

@@ -14,13 +14,14 @@ import { CreateuserdialogComponent } from '../createuserdialog/createuserdialog.
 })
 export class LoginComponent implements OnInit {
   hide = true;
+  loginUsername = '';
   creatingUser = false;
   constructor(private userService: UserService, public dialog: MatDialog) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateuserdialogComponent, {
       width: '500px',
-      data: {name: "YEAH", animal: "COW"}
+      data: {username:this.loginUsername, animal: "COW"}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -30,6 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
   }
   toggleUserCreation() {
     this.creatingUser = !this.creatingUser;

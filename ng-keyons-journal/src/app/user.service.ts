@@ -18,9 +18,6 @@ export class UserService {
     })
   };
 
-
-  // user: {username:string, CreatePassword:string, userId:string, email: string};
-
   url = 'http://localhost:8000/KeyonsJournal/php/main.php';
   createUserData: {CreateUsername: string, CreatePassword: string, CreateEmail: string};
 

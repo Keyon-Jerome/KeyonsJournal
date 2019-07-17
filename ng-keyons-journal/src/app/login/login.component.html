@@ -1,13 +1,15 @@
 <div class="container-fluid px-0 h-100 align-items-center">
-  <div  class="row no-gutters align-items-center height100VH">
-    <div class="col-4 offset-4   text-center  my-auto ">
-      <div class="content pb-5 mb-5">
-      <h2 class="journal-font ">Keyon's Journal</h2>
-      <h3 class="greyRoboto mt-4">Get words down fast.</h3>
-        <div class="mb-0 pb-0 pt-3">
-            <mat-form-field class="form-sizer" appearance="outline" >
+  <div  class="row no-gutters align-items-start height100VH">
+    <div class="col-8 offset-2 col-md-4 offset-md-4   text-center  my-auto  pt-4">
+      <div class="content pb-5 mb-5 ">
+      <h2 class="journal-font  display-4 align-self-start" >Keyon's Journal</h2>
+      <br>
+      <h3 class="greyRoboto mt-4  mb-5 button-sizer" >Get words down fast.</h3>
+      <div>
+        <div class="mb-0 mt-5 pb-0 pt-5">
+            <mat-form-field class="form-sizer mt-5" appearance="fill" >
                 <mat-label>Username</mat-label>
-                <input matInput placeholder="" id="no-space">
+                <input matInput placeholder="" id="no-space" [(ngModel)]="loginUsername">
                 <!-- <mat-icon >home</mat-icon> -->
                <!-- <mat-hint>Hint</mat-hint> -->
               </mat-form-field>
@@ -26,14 +28,18 @@
           &nbsp;
           <button  class="button-sizer" mat-raised-button color="primary" style="margin-top:20px;" (keyup.enter)="openDialog()" (click)="openDialog()">CREATE USER</button>
       </div>
+    </div>
 
 
     </div> <!-- content-->
     </div> <!-- col-->
-    <div class="col-4">
+    <div class="col-md-4 col-2">
 
     </div>
 
   </div> <!-- container-->
 
 </div>
+<style>
+
+</style>
