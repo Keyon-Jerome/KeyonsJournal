@@ -23,8 +23,8 @@ class Login {
             //$json =  rtrim($assoc_array, '[]');
             // $json = json_encode($assoc_array);
 
-            $userIDArray = array('UserID'=>$assoc_array['UserID']);
-            $userIDJSON = json_encode($userIDArray);
+            #$userIDArray = array('UserID'=>$assoc_array['UserID']);
+            $userIDJSON = json_encode($assoc_array);
             
             //$row = mysqli_fetch_row($query_result);
             //echo $row;

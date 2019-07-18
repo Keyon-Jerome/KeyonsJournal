@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { FormControl, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CreateuserdialogComponent } from '../createuserdialog/createuserdialog.component';
+import { Router } from '@angular/router';
 
 
 
@@ -17,9 +18,10 @@ export class LoginComponent implements OnInit {
   loginUsername = '';
   username  = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]);
   password = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
+  loginSuccessful = true;
 
 
-  constructor(private userService: UserService, public dialog: MatDialog) { }
+  constructor(private userService: UserService, public dialog: MatDialog, private router: Router) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateuserdialogComponent, {
@@ -46,7 +48,7 @@ export class LoginComponent implements OnInit {
       }
   }
   isFormFinished() {
-    return  this.getUsernameErrorMessage() == '' && this.getPasswordErrorMessage() == '';
+    return  this.getUsernameErrorMessage() === '' && this.getPasswordErrorMessage() === '';
   }
 
 
@@ -62,10 +64,19 @@ export class LoginComponent implements OnInit {
 
   login() {
     if(this.isFormFinished()) {
-      console.log(this.username.value + " " + this.password.value);
+      console.log(this.username.value + ' ' + this.password.value);
       this.userService.sendLogin(this.username.value,this.password.value);
+      this.loginFailDelay(500);
     }
   }
+
+  async loginFailDelay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>this.loginSuccessful=false)
+  }
+
+  async delay(ms: number) {
+    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+}
 
 }
 

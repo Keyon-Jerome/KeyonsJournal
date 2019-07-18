@@ -14,13 +14,25 @@ import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/
 import { CreateuserdialogComponent } from './createuserdialog/createuserdialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { NotesDisplayComponent } from './notes-display/notes-display.component';
+import { SingleNoteComponent } from './single-note/single-note.component';
+import { CreateNoteComponent } from './create-note/create-note.component';
+import {MatCardModule, MatCard} from '@angular/material/card';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     PageNotFoundComponent,
-    CreateuserdialogComponent
+    CreateuserdialogComponent,
+    HomeComponent,
+    NotesDisplayComponent,
+    SingleNoteComponent,
+    CreateNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +47,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCardModule,
+    MatGridListModule,
+    FlexLayoutModule,
+    ScrollDispatchModule
     // MatDialogRef,
 
   ],

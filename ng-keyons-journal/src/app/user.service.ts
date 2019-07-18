@@ -1,5 +1,9 @@
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import {map, take, skip} from 'rxjs/operators';
+import { pipe } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +12,9 @@ export class UserService {
 
   url = 'http://localhost:8000/KeyonsJournal/php/main.php';
   createUserData: {CreateUsername: string, CreatePassword: string, CreateEmail: string};
-  loginUserData: {loginUsername:string, loginPassword:string};
+  loginUserData: {loginUsername: string, loginPassword: string};
+  userID = '';
+  userFound: boolean;
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,13 +24,14 @@ export class UserService {
       // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
      // 'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token',
       // 'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token, Authorization',
-      // observe: 'response'
+      observe: 'response'
     })
   };
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.createUserData = {CreateUsername: '', CreatePassword: '', CreateEmail: ''};
-    this.loginUserData = {loginUsername:'',loginPassword:''};
+    this.loginUserData = {loginUsername: '', loginPassword: ''};
+    // this.userFound.found = true;
 
   }
 
@@ -43,20 +50,67 @@ export class UserService {
         console.log(responseData);
       });
     }
-  updateLoginUserData(username:string, pass:string) {
+  updateLoginUserData(username: string, pass: string) {
     this.loginUserData.loginUsername = username;
     this.loginUserData.loginPassword = pass;
 
   }
 
 
-  sendLogin(username:string,pass:string) {
-    this.updateLoginUserData(username,pass);
-      console.log(this.loginUserData);
-    this.http.post(this.url, this.loginUserData, this.httpOptions).subscribe(responseData => {
-      console.log(responseData);
+  sendLogin(username: string, pass: string) {
+    this.userFound = false;
+    this.updateLoginUserData(username, pass);
+    console.log(this.loginUserData);
+    this.http.post(this.url, this.loginUserData, this.httpOptions)
+
+    .pipe(skip(0)
+    // .pipe(
+    //   map(responseData => {
+    //   const dataArray = [];
+    //   console.log('mapping');
+    //   for (const key in responseData) {
+    //     if(responseData.hasOwnProperty(key)){
+    //       // dataArray.push({...responseData[key], id: key});
+    //         dataArray.push({data: responseData[key],id:key});
+    //     }
+    //   }
+    //   console.log(dataArray);
+    //   return dataArray;
+    // })
+
+    ).subscribe(response => {
+    //   try{
+    //   console.log(response[0].data);
+    //   this.userID = response[0].data;
+    //   this.userFound = true;
+    //   } catch {
+    //     console.log('No user found!');
+    //     this.userFound = false;
+    //   }
+    // });
+    const dataArray = [];
+
+    for ( const key in response) {
+        if (response.hasOwnProperty(key)) {
+          dataArray.push({data: response[key], id: key});
+        }
+      }
+
+    if (dataArray[0].hasOwnProperty('data')) {
+        this.userID = dataArray[0].data;
+        console.log(this.userID);
+        this.userFound = true;
+        this.router.navigate(['home']);
+    }
+
     });
+    return !this.userFound;
   }
+
+
+
+
+
 
 
 }
