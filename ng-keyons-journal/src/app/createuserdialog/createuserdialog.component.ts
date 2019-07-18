@@ -56,6 +56,7 @@ export class CreateuserdialogComponent implements OnInit {
   onSubmit() {
     if (this.isFormFinished()) {
       this.userService.createUser(this.username.value, this.password.value, this.email.value);
+      this.dialogRef.close();
     }
   }
 

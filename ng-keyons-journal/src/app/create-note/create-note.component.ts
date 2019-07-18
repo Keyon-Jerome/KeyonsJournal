@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateNoteComponent implements OnInit {
 
+
+  today: number = Date.now();
+
   constructor() { }
 
   ngOnInit() {

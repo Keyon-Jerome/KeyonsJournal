@@ -2,6 +2,11 @@
 
   background:white;
   width:100vw;
-  height:25vh;
+  height:30vh;
 
+}
+.note {
+padding-left:20px;
+ width:100% !important;
+bordeR:none;
 }
