@@ -1,8 +1,16 @@
 .example-viewport {
-  height: 70vh;
+  height: 75vh;
   width: 100%;
 }
+.disable-scrollbars::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Chrome/Safari/Webkit */
+}
 
+.disable-scrollbars {
+scrollbar-width: none; /* Firefox */
+-ms-overflow-style: none;  /* IE 10+ */
+}
 .example-item {
   height: 50px;
 }
