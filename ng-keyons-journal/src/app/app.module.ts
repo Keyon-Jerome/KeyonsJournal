@@ -22,6 +22,8 @@ import {MatCardModule, MatCard} from '@angular/material/card';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
+import { AddNoteButtonComponent } from './add-note-button/add-note-button.component';
+import {MatSnackBarModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {ScrollDispatchModule} from '@angular/cdk/scrolling';
     HomeComponent,
     NotesDisplayComponent,
     SingleNoteComponent,
-    CreateNoteComponent
+    CreateNoteComponent,
+    AddNoteButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -51,12 +54,13 @@ import {ScrollDispatchModule} from '@angular/cdk/scrolling';
     MatCardModule,
     MatGridListModule,
     FlexLayoutModule,
-    ScrollDispatchModule
+    ScrollDispatchModule,
+    MatSnackBarModule
     // MatDialogRef,
 
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateuserdialogComponent],
+  entryComponents: [CreateuserdialogComponent,AddNoteButtonComponent],
 })
 export class AppModule { }

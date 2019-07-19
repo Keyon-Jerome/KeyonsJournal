@@ -1,19 +1,24 @@
 <div class="container-fluid create-note-container" >
-  <div class="row">
+  <div class="row rounded-top  rowborder">
     <div class="col-12 pt-3">
       <h6  style="font-family: Roboto; font-weight:300;">{{today | date:'fullDate'}}</h6>
-      <!-- <mat-form-field class="mt-0 pt-0" style="border:none;"> -->
-          <input matInput  style="border:none;padding-left:10px; font-family:Roboto; font-size:25px;" class="displa" value="Note Headline">
-        <!-- </mat-form-field> -->
+      <!-- <div class="mt-0 pt-0" style="border:none;"> -->
+          <input matInput  style="font-family:Roboto; border:none;" class="h4 pl-2" value="Note Headline">
+        <!-- </div> -->
 
-        <mat-form-field class="disable-scrollbars note">
-            <mat-label></mat-label>
-            <textarea class="note disable-scrollbars"
+        <div class="disable-scrollbars note">
+            <textarea class="note disable-scrollbars textarea"
                       cdkTextareaAutosize
                       #autosize="cdkTextareaAutosize" value="Begin typing..."
                      ></textarea>
-          </mat-form-field>
+          </div>
+
     </div>
+  </div>
+
+  <div class="row text-center fixed overflow-x buttonsz">
+      &nbsp;
+      <!-- <button  class="button-sizer align-right" mat-raised-button color="primary" style="margin-top:20px;" (keyup.enter)="openDialog()" (click)="openDialog()">CREATE USER</button> -->
   </div>
 
 
