@@ -13,6 +13,7 @@ export class UserService {
   url = 'http://localhost:8000/KeyonsJournal/php/main.php';
   createUserData: {CreateUsername: string, CreatePassword: string, CreateEmail: string};
   loginUserData: {loginUsername: string, loginPassword: string};
+  currentEntryData: {header:string,content:string};
   userID = '';
   userFound: boolean;
 
@@ -105,6 +106,33 @@ export class UserService {
 
     });
     return !this.userFound;
+  }
+  updateCurrentEntryData(header:string,content:string) {
+    this.currentEntryData.header = header;
+    this.currentEntryData.content = content;
+  }
+  sendJournalEntry(header:string,content:string) {
+    this.updateCurrentEntryData(header,content);
+    this.http.post(this.url, this.loginUserData, this.httpOptions)
+
+    .pipe(take(2)
+    ).subscribe(response => {
+
+    const dataArray = [];
+
+    for ( const key in response) {
+        if (response.hasOwnProperty(key)) {
+          dataArray.push({data: response[key], id: key});
+        }
+      }
+
+    if (dataArray[0].hasOwnProperty('data')) {
+        console.log(dataArray);
+    }
+
+    });
+
+
   }
 
 

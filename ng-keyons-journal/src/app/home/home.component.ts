@@ -29,13 +29,13 @@ export class HomeComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CreatenotedialogComponent, {
-      width: '500px',
+      width: '90vw',
       // data: {username:this.loginUsername}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.animal = result;
+
     });
   }
 

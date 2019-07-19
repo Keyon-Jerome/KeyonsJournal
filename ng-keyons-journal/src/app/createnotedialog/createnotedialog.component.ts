@@ -25,11 +25,11 @@ export class CreatenotedialogComponent implements OnInit {
 
     openDialog(): void {
       const dialogRef = this.dialog.open(CreatenotedialogComponent, {
-        width: '800px',
+        width: '90vw',
       });
 
       dialogRef.afterClosed().subscribe(result => {
-        console.log('The dialog was closed');
+        this.openSnackBar();
       });
     }
   ngOnInit() {

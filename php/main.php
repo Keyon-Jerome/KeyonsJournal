@@ -35,8 +35,8 @@ switch ($method) {
       CreateNewUser::createUser($obj->{"CreateUsername"},$obj->{"CreatePassword"},$obj->{"CreateEmail"});
     }
     // If an entry is being created:
-    else if(property_exists($obj,"Content")) {
-      SendEntry::sendJournalEntry($obj->{"Header"},$obj->{"Content"},$obj->{"UserID"});
+    else if(property_exists($obj,"content")) {
+      SendEntry::sendJournalEntry($obj->{"header"},$obj->{"content"},$obj->{"UserID"});
     }
 
     else if(property_exists($obj,"loginUsername")) {
