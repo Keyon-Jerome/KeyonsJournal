@@ -57,6 +57,24 @@ scrollbar-width: none; /* Firefox */
     */
     color:black;
   }
+/*
+   .snackbar, .snackBarInfo{
+    max-width:10px !important;
+  }
 
+  .mat-snack-bar-container {
+    max-width:10px !important;
+    padding:0 !important;
+    margin:0 !important;
+  }
+    .mat-simple-snackbar {
+    max-width:200px !important;  }
 
+ simple-snack-bar {
+  width: 200px !important;
+  margin: 0 !important;
+    } */
+div#cdk-overlay-0.cdk-overlay-pane {
+  /* width:40vw !important; */
+}
 /* https://stackoverflow.com/questions/50604345/how-to-color-text-input-in-angular-material/50605823*/

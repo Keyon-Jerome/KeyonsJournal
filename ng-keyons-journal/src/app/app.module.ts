@@ -24,6 +24,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { AddNoteButtonComponent } from './add-note-button/add-note-button.component';
 import {MatSnackBarModule} from '@angular/material';
+import { CreatenotedialogComponent } from './createnotedialog/createnotedialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import {MatSnackBarModule} from '@angular/material';
     NotesDisplayComponent,
     SingleNoteComponent,
     CreateNoteComponent,
-    AddNoteButtonComponent
+    AddNoteButtonComponent,
+    CreatenotedialogComponent
   ],
   imports: [
     BrowserModule,
@@ -61,6 +63,6 @@ import {MatSnackBarModule} from '@angular/material';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateuserdialogComponent,AddNoteButtonComponent],
+  entryComponents: [CreateuserdialogComponent,AddNoteButtonComponent,CreatenotedialogComponent],
 })
 export class AppModule { }

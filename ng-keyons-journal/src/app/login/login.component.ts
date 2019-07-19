@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  encapsulation:ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
   hide = true;
@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(CreateuserdialogComponent, {
       width: '500px',
-      data: {username:this.loginUsername}
+      data: {username: this.loginUsername}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -40,10 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   getUsernameErrorMessage() {
-    if (this.username.hasError('required')) { return 'You must enter a value'; }
-    else if (this.username.hasError('minlength')) { return 'Username must be at least 5 characters long'; }
-    else if (this.username.hasError('maxlength')) { return 'Username must be under 16 characters long.'; }
-    else {
+    if (this.username.hasError('required')) { return 'You must enter a value'; } else if (this.username.hasError('minlength')) { return 'Username must be at least 5 characters long'; } else if (this.username.hasError('maxlength')) { return 'Username must be under 16 characters long.'; } else {
       return '';
       }
   }
@@ -53,29 +50,26 @@ export class LoginComponent implements OnInit {
 
 
   getPasswordErrorMessage() {
-    if (this.password.hasError('required')) { return 'You must enter a value'; }
-    else if (this.password.hasError('minlength')) { return 'Password must be at least 5 characters long'; }
-    else if (this.password.hasError('maxlength')) { return 'Password must be under 25 characters long.'; }
-    else {
+    if (this.password.hasError('required')) { return 'You must enter a value'; } else if (this.password.hasError('minlength')) { return 'Password must be at least 5 characters long'; } else if (this.password.hasError('maxlength')) { return 'Password must be under 25 characters long.'; } else {
       return '';
       }
   }
 
 
   login() {
-    if(this.isFormFinished()) {
+    if (this.isFormFinished()) {
       console.log(this.username.value + ' ' + this.password.value);
-      this.userService.sendLogin(this.username.value,this.password.value);
+      this.userService.sendLogin(this.username.value, this.password.value);
       this.loginFailDelay(500);
     }
   }
 
   async loginFailDelay(ms: number) {
-    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>this.loginSuccessful=false)
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => this.loginSuccessful = false);
   }
 
   async delay(ms: number) {
-    await new Promise(resolve => setTimeout(()=>resolve(), ms)).then(()=>console.log("fired"));
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
 }
 
 }

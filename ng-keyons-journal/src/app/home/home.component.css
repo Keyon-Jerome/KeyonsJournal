@@ -1,3 +1,7 @@
 *{
   overflow: hidden !important;
 }
+
+.snackbar, .snackBarInfo {
+  max-width:200px !important;
+}
