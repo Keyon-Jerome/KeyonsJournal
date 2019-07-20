@@ -11,12 +11,17 @@ import { Router } from '@angular/router';
 export class UserService {
 
   url = 'http://localhost:8000/KeyonsJournal/php/main.php';
+
   createUserData: {CreateUsername: string, CreatePassword: string, CreateEmail: string};
   loginUserData: {loginUsername: string, loginPassword: string};
-  currentEntryData: {header:string,content:string, userID:string};
+  currentEntryData: {header: string, content: string, userID: string};
+  allEntriesData: {Header: string, Content: string, DateSent: string, EntryID: string, UserID: string}[];
+
   userID = '';
-  journalEntryCreationStatus = 'Unused';
   userFound: boolean;
+  journalEntryCreationStatus = 'Unused';
+
+
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
@@ -32,18 +37,18 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) {
     this.createUserData = {CreateUsername: '', CreatePassword: '', CreateEmail: ''};
     this.loginUserData = {loginUsername: '', loginPassword: ''};
-    this.currentEntryData = {header:'',content:'',userID:this.userID};
+    this.currentEntryData = {header: '', content: '', userID: this.userID};
+    this.allEntriesData = [];
 
     // this.userFound.found = true;
 
   }
 
-
   updateCreateUserData(username: string, pass: string, email: string) {
       this.createUserData.CreateUsername = username;
       this.createUserData.CreatePassword = pass;
       this.createUserData.CreateEmail = email;
-    }
+  }
 
   createUser(username: string, pass: string, email: string) {
       console.log(this.createUserData);
@@ -52,13 +57,13 @@ export class UserService {
       this.http.post(this.url, this.createUserData, this.httpOptions).subscribe(responseData => {
         console.log(responseData);
       });
-    }
+  }
+
   updateLoginUserData(username: string, pass: string) {
     this.loginUserData.loginUsername = username;
     this.loginUserData.loginPassword = pass;
 
   }
-
 
   sendLogin(username: string, pass: string) {
     this.userFound = false;
@@ -109,44 +114,70 @@ export class UserService {
     });
     return !this.userFound;
   }
-  updateCurrentEntryData(header:string,content:string) {
+  updateCurrentEntryData(header: string, content: string) {
     this.currentEntryData.header = header;
     this.currentEntryData.content = content;
     this.currentEntryData.userID = this.userID;
   }
-  sendJournalEntry(header:string,content:string) {
-    this.updateCurrentEntryData(header,content);
+  sendJournalEntry(header: string, content: string) {
+    this.updateCurrentEntryData(header, content);
     console.log(this.currentEntryData);
     this.http.post(this.url, this.currentEntryData, this.httpOptions)
     .pipe(take(2))
     .subscribe(
-      response => 
-      {
+      response => {
         const dataArray = [];
 
-        for (const key in response)
-        {
-          if(response.hasOwnProperty(key)) {
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
             dataArray.push({data: response[key], id: key});
           }
         }
 
-        if (dataArray[0].hasOwnProperty('data'))
-        {
-          this.journalEntryCreationStatus = dataArray[0]['data'];
-          if(this.journalEntryCreationStatus == 'Entry created successfully!') {
+        if (dataArray[0].hasOwnProperty('data')) {
+          this.journalEntryCreationStatus = dataArray[0].data;
+          if (this.journalEntryCreationStatus == 'Entry created successfully!') {
             return true;
-          }
-          else {
+          } else {
             retry(1);
           }
-        }
-        else {
+        } else {
           retry(1);
         }
 
       });
 
+  }
+  getJournalEntries() {
+    this.http.post(this.url, {userID: this.userID}, this.httpOptions)
+    .pipe(take(2))
+    .subscribe(
+      response => {
+        const dataArray = [];
+
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            dataArray.push({data: response[key], id: key});
+          }
+        }
+        for(const item of dataArray) {
+          this.allEntriesData.push(item['data']);
+        }
+        console.log(this.allEntriesData);
+        console.log(dataArray);
+        if (dataArray[0].hasOwnProperty('data')) {
+          // this.journalEntryCreationStatus = dataArray[0]['data'];
+          // if(this.journalEntryCreationStatus == 'Entry created successfully!') {
+          //   return true;
+          // }
+          // else {
+          //   retry(1);
+          // }
+        } else {
+          retry(1);
+        }
+
+      });
   }
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-single-note',
@@ -6,8 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./single-note.component.css']
 })
 export class SingleNoteComponent implements OnInit {
-
-  constructor() { }
+  @Input() header:string;
+  @Input() date:string;
+  @Input() content:string;
+  constructor() {
+    // this.header = 'CONSTRUCTING';
+    // this.content = 'CONSTRUCTING';
+    // this.date = 'CONSTRUCTING';
+  }
 
   ngOnInit() {
   }

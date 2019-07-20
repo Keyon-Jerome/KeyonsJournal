@@ -3,7 +3,7 @@
 
 <div mat-dialog-content>
 
-    <mat-form-field >
+    <mat-form-field class="med-width" >
         <input matInput [(formControl)]="title" placeholder="Title">
       </mat-form-field>
 
@@ -24,6 +24,9 @@
 <style>
 .full-width {
   width: 100%;
+}
+.med-width {
+  width:60%;
 }
 .no-resize {
   resize:none;

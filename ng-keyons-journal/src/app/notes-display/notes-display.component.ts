@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-notes-display',
@@ -6,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./notes-display.component.css']
 })
 export class NotesDisplayComponent implements OnInit {
-  notes=  [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+  notes =  this.userService.allEntriesData;
+  
   desired_columns = 4;
-  constructor() { }
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.getJournalEntries();
+  
   }
 
 }

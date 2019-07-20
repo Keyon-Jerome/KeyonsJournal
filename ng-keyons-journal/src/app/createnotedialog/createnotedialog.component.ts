@@ -15,7 +15,10 @@ export class CreatenotedialogComponent implements OnInit {
 
   constructor(private snackBar: MatSnackBar,public dialogRef: MatDialogRef<CreateuserdialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private userService: UserService,public dialog: MatDialog) { }
-
+    
+    ngOnInit() {
+    }
+    
     openSnackBar() {
       const snackBarRef = this.snackBar.open('', 'NEW NOTE', {horizontalPosition: 'right',
       verticalPosition: 'bottom',
@@ -26,22 +29,38 @@ export class CreatenotedialogComponent implements OnInit {
     openDialog(): void {
       const dialogRef = this.dialog.open(CreatenotedialogComponent, {
         width: '90vw',
+        minHeight:'40vh',
       });
+      
+      // dialogRef.beforeClosed().subscribe(result => {
+      //   this.openSnackBar();
+      // });
 
+      // dialogRef.backdropClick().subscribe( result => {
+      //   this.openSnackBar();
+      // })
+      // dialogRef.afterClosed().subscribe({complete() {
+      //   this.openSnackBar();
+      // }});
       dialogRef.afterClosed().subscribe(result => {
         this.openSnackBar();
       });
     }
-  ngOnInit() {
-  }
+
   onCancel() {
-    this.dialogRef.close()
-    this.openSnackBar();
+    this.dialogRef.close();
+    // this.openSnackBar();
   }
+
+  isEmptyOrSpaces(str){
+    return !str || str.trim() === '';
+}
   onSubmit() {
+    if(!this.isEmptyOrSpaces(this.title.value) || !this.isEmptyOrSpaces(this.content.value) )
+    {
     this.userService.sendJournalEntry(this.title.value,this.content.value);
     this.dialogRef.close();
-    this.openSnackBar();
-
+    // this.openSnackBar();
+    }
   }
 }

@@ -25,7 +25,6 @@ $from = $_SERVER['REMOTE_ADDR'];
 // Pass along the request to its appropriate function, depending on type
 switch ($method) {
   case 'PUT':
-
       break;
   case 'POST':
   // Parse the input; is the client creating a user account, posting a message, or logging in?
@@ -41,15 +40,15 @@ switch ($method) {
 
     else if(property_exists($obj,"loginUsername")) {
       $userID = Login::userLogin($obj->{"loginUsername"},$obj->{"loginPassword"});
-     // EntryReturn::getEntries($userID);
+      
+    }
+    else if(property_exists($obj,"userID")) {
+      EntryReturn::GetEntries($obj->{"userID"});
     }
     break;
 
   case 'GET':
-    
-    
-    // Get messages corresponding to the user's id. User's username and password should be passed along to this.  
-    break;
+     break;
   default:
     echo "error";
     handle_error($request);  

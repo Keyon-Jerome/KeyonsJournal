@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialog, MatSnackBarRef } from '@angular/material';
 import { AddNoteButtonComponent } from '../add-note-button/add-note-button.component';
 import { CreatenotedialogComponent } from '../createnotedialog/createnotedialog.component';
 
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+      this.openSnackBar();
 
     });
   }
