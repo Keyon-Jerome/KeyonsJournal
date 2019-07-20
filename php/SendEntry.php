@@ -26,9 +26,16 @@ class SendEntry {
         
         // Run the query and echo the response (success or fail)
         if ($db_connection->query($sql) === TRUE) {
-            echo "Entry created successfully!";
+            $successMessage = "Entry created successfully!";
+            $successMessageArray = array('status' =>$successMessage);
+            $successMessageJSON =  json_encode($successMessageArray);
+            echo $successMessageJSON;
         } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
+
+            $failMessage = "Error: " . $sql . "<br>" . $conn->error;
+            $failMessageArray = array('status' =>$failMessage);
+            $failMessageJSON =  json_encode($failMessageArray);
+            die($failMessageJSON);
         }
     }
 

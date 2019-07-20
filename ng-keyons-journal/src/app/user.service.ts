@@ -1,6 +1,6 @@
 import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
-import {map, take, skip} from 'rxjs/operators';
+import {map, take, skip, retry} from 'rxjs/operators';
 import { pipe } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -13,10 +13,10 @@ export class UserService {
   url = 'http://localhost:8000/KeyonsJournal/php/main.php';
   createUserData: {CreateUsername: string, CreatePassword: string, CreateEmail: string};
   loginUserData: {loginUsername: string, loginPassword: string};
-  currentEntryData: {header:string,content:string};
+  currentEntryData: {header:string,content:string, userID:string};
   userID = '';
+  journalEntryCreationStatus = 'Unused';
   userFound: boolean;
-
   httpOptions = {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
@@ -32,6 +32,8 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) {
     this.createUserData = {CreateUsername: '', CreatePassword: '', CreateEmail: ''};
     this.loginUserData = {loginUsername: '', loginPassword: ''};
+    this.currentEntryData = {header:'',content:'',userID:this.userID};
+
     // this.userFound.found = true;
 
   }
@@ -110,33 +112,42 @@ export class UserService {
   updateCurrentEntryData(header:string,content:string) {
     this.currentEntryData.header = header;
     this.currentEntryData.content = content;
+    this.currentEntryData.userID = this.userID;
   }
   sendJournalEntry(header:string,content:string) {
     this.updateCurrentEntryData(header,content);
-    this.http.post(this.url, this.loginUserData, this.httpOptions)
+    console.log(this.currentEntryData);
+    this.http.post(this.url, this.currentEntryData, this.httpOptions)
+    .pipe(take(2))
+    .subscribe(
+      response => 
+      {
+        const dataArray = [];
 
-    .pipe(take(2)
-    ).subscribe(response => {
-
-    const dataArray = [];
-
-    for ( const key in response) {
-        if (response.hasOwnProperty(key)) {
-          dataArray.push({data: response[key], id: key});
+        for (const key in response)
+        {
+          if(response.hasOwnProperty(key)) {
+            dataArray.push({data: response[key], id: key});
+          }
         }
-      }
 
-    if (dataArray[0].hasOwnProperty('data')) {
-        console.log(dataArray);
-    }
+        if (dataArray[0].hasOwnProperty('data'))
+        {
+          this.journalEntryCreationStatus = dataArray[0]['data'];
+          if(this.journalEntryCreationStatus == 'Entry created successfully!') {
+            return true;
+          }
+          else {
+            retry(1);
+          }
+        }
+        else {
+          retry(1);
+        }
 
-    });
-
+      });
 
   }
-
-
-
 
 
 

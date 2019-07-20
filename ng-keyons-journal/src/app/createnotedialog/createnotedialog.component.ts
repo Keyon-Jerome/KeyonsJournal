@@ -39,6 +39,9 @@ export class CreatenotedialogComponent implements OnInit {
     this.openSnackBar();
   }
   onSubmit() {
+    this.userService.sendJournalEntry(this.title.value,this.content.value);
+    this.dialogRef.close();
+    this.openSnackBar();
 
   }
 }
