@@ -17,6 +17,13 @@
 
 
 }
+.roboto {
+  font-family: 'Roboto','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-top:-2vh !important;
+  color:white;
+}
 .disable-scrollbars::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* Chrome/Safari/Webkit */
@@ -30,9 +37,13 @@ scrollbar-width: none; /* Firefox */
 .makeOpaque {
   opacity:0.5;
 }
+
+
 .bg-login {
   /* background-image:url(./assets/undrawprogressbackground.svg); */
-  background-image:url('./assets/undraw_conference_uo36.svg');
+  /* background-image:url('./assets/undraw_conference_uo36.svg'); */
+  /* background-image:url('./assets/flat-mountains.svg');*/
+  background-image:url('./assets/confetti-doodles.svg');
   /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #081F59;
   /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #661418; */
   background-repeat: no-repeat;

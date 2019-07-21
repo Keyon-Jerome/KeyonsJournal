@@ -2,11 +2,15 @@
   <div  class="row no-gutters align-items-start height100VH">
     <div class="col-8 offset-2 col-md-4 offset-md-4   text-center  my-auto  pt-4">
       <div class="content pb-5 mb-5">
-      <h2 class="journal-font  display-4 align-self-start" >Keyon's Journal</h2>
+      <div class="display-4 mt-4 pt-4">
+      <!--<img src="../../assets/keyonsjournallogo.png" alt="Logo" class="img-thumbnail w-10 border-0" style="white-space:nowrap">-->
+      <h2 class="journal-font  display-4  text-center align-self-start" style="display:inline;" >Keyon's Journal</h2>
+      </div>
       <br>
-      <h3 class="greyRoboto mt-4  mb-5 button-sizer" >Get words down fast.</h3>
+      <h3 class="roboto text-white mt-4  mb-5 button-sizer" >Get words down fast.</h3>
+        <img src="../../assets/keyonsjournallogo.png" alt="Logo" class="img-thumbnail w-10 border-0" style="white-space:nowrap">
       <div>
-        <div class="mb-0 mt-5 pb-0 pt-5">
+        <div class="mb-0 mt-0 pb-0 pt-0">
             <mat-form-field class="form-sizer mt-5 pb-3" appearance="fill" >
                 <mat-label>Username</mat-label>
                 <input matInput placeholder="" [(formControl)]="username"  id="no-space" >
@@ -46,5 +50,7 @@
 
 </div>
 <style>
-
+.w-10 {
+  width:5em;
+}
 </style>
