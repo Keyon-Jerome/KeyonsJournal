@@ -104,13 +104,16 @@ export class UserService {
           dataArray.push({data: response[key], id: key});
         }
       }
-
-    if (dataArray[0].hasOwnProperty('data')) {
-        this.userID = dataArray[0].data;
-        console.log(this.userID);
-        this.userFound = true;
-        this.router.navigate(['home']);
-    }
+    try {
+      if (dataArray[0].hasOwnProperty('data')) {
+          this.userID = dataArray[0].data;
+          console.log(this.userID);
+          this.userFound = true;
+          this.router.navigate(['home']);
+      }
+  } catch {
+    retry(1);
+  }
 
     });
     return !this.userFound;
