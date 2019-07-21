@@ -35,6 +35,7 @@ export class NoteCreationService {
 
 }
 
+
 openSnackBar() {
   // this.snackBar.openFromComponent(AddNoteButtonComponent,
   //    {horizontalPosition: 'right',
@@ -44,5 +45,6 @@ openSnackBar() {
   verticalPosition: 'bottom',
   panelClass: 'snackBarInfo', });
   snackBarRef.onAction().subscribe(() => this.openDialog());
+
 }
 }
