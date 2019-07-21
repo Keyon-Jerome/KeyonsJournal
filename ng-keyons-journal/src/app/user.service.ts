@@ -120,6 +120,10 @@ export class UserService {
     this.currentEntryData.content = content;
     this.currentEntryData.userID = this.userID;
   }
+
+  updateJournalEntry(EntryID: string) {
+
+  }
   sendJournalEntry(header: string, content: string) {
     this.updateCurrentEntryData(header, content);
     console.log(this.currentEntryData);

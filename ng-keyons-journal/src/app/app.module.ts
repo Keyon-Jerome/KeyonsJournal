@@ -10,7 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatChipsModule} from '@angular/material/chips';
-import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA, MatDialog} from '@angular/material/dialog';
 import { CreateuserdialogComponent } from './createuserdialog/createuserdialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -61,8 +61,8 @@ import { CreatenotedialogComponent } from './createnotedialog/createnotedialog.c
     // MatDialogRef,
 
   ],
-  providers: [],
+  providers: [MatDialog],
   bootstrap: [AppComponent],
-  entryComponents: [CreateuserdialogComponent,AddNoteButtonComponent,CreatenotedialogComponent],
+  entryComponents: [CreateuserdialogComponent, AddNoteButtonComponent, CreatenotedialogComponent],
 })
 export class AppModule { }

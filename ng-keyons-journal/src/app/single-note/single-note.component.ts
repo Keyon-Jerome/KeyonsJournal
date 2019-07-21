@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { NoteCreationService } from '../note-creation.service';
 
 @Component({
   selector: 'app-single-note',
@@ -6,16 +7,22 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./single-note.component.css']
 })
 export class SingleNoteComponent implements OnInit {
-  @Input() header:string;
-  @Input() date:string;
-  @Input() content:string;
-  constructor() {
+  @Input() header: string;
+  @Input() date: string;
+  @Input() content: string;
+  @Input() EntryID: string;
+  constructor(private createNoteService: NoteCreationService) {
     // this.header = 'CONSTRUCTING';
     // this.content = 'CONSTRUCTING';
     // this.date = 'CONSTRUCTING';
   }
 
   ngOnInit() {
+  }
+  onEdit() {
+    this.createNoteService.openDialog({EntryID: this.EntryID, Header: this.header, Content: this.content});
+    console.log('called');
+
   }
 
 }

@@ -10,7 +10,7 @@
     <!-- <div class="col-12"> -->
 <cdk-virtual-scroll-viewport itemSize="80000" class="example-viewport disable-scrollbars">
   <div  fxLayout="row wrap" fxLayoutWrap fxLayoutAlign="center center">
-  <app-single-note *ngFor="let note of notes" [header]="note.Header" [date]="note.DateSent" [content]="note.Content"></app-single-note>
+  <app-single-note *ngFor="let note of notes" [header]="note.Header" [date]="note.DateSent" [content]="note.Content" [EntryID]="note.EntryID"></app-single-note>
 </div>
   </cdk-virtual-scroll-viewport>
   <!-- </div> -->

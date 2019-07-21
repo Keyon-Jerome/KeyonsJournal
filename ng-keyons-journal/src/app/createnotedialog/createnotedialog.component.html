@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>New Journal Entry</h1>
+<h1 mat-dialog-title>{{dialogTitle}}}</h1>
 
 
 <div mat-dialog-content>
@@ -18,7 +18,7 @@
 
       <div mat-dialog-actions>
 <button mat-button (click)="onCancel()">Cancel</button>
-  <button class="align-self-end"mat-button  cdkFocusInitial (click)="onSubmit()">Submit</button>
+  <button class="align-self-end"mat-button  cdkFocusInitial (click)="onSubmit()">{{sendButton}}</button>
 </div>
 
 <style>
