@@ -138,7 +138,7 @@ export class UserService {
         if (dataArray[0].hasOwnProperty('data')) {
           this.journalEntryCreationStatus = dataArray[0].data;
           if (this.journalEntryCreationStatus === 'Entry created successfully!') {
-            this.addJournalEntry(header, content);
+            // this.addJournalEntry(header, content);
             return true;
           } else {
             retry(1);
@@ -149,36 +149,59 @@ export class UserService {
 
       });
 
+    this.getLastEntry();
+
   }
 
-  addJournalEntry(header: string, content: string) {
-    const currentDate = new Date();
-    const _utc = new Date(currentDate.getUTCFullYear(),
-    currentDate.getUTCMonth(),
-    currentDate.getUTCDate(),
-    currentDate.getUTCHours(),
-    currentDate.getUTCMinutes(),
-    currentDate.getUTCSeconds());
+  // addJournalEntry(header: string, content: string) {
+  //   const currentDate = new Date();
+  //   const _utc = new Date(currentDate.getUTCFullYear(),
+  //   currentDate.getUTCMonth(),
+  //   currentDate.getUTCDate(),
+  //   currentDate.getUTCHours(),
+  //   currentDate.getUTCMinutes(),
+  //   currentDate.getUTCSeconds());
 
-    this.allEntriesData.push(
-      {Header: header, Content: content, DateSent: _utc.toISOString(), EntryID: 'createdThisSession', UserID: this.userID}
-      );
+  //   this.allEntriesData.push(
+  //     {Header: header, Content: content, DateSent: _utc.toISOString(), EntryID: 'createdThisSession', UserID: this.userID}
+  //     );
+  // }
+  getLastEntry() {
+
+      this.http.post(this.url, {userID: this.userID}, this.httpOptions)
+      .pipe(take(1))
+      .subscribe(
+        response => {
+          const dataArray = [];
+
+
+          for (const key in response) {
+            if (response.hasOwnProperty(key)) {
+              dataArray.push({data: response[key], id: key});
+            }
+          }
+          this.allEntriesData.push(dataArray[dataArray.length - 1].data);
+
+        });
   }
-
   getJournalEntries() {
+    // this.allEntriesData = [];
     this.http.post(this.url, {userID: this.userID}, this.httpOptions)
-    .pipe(take(2))
+    .pipe(take(1))
     .subscribe(
       response => {
         const dataArray = [];
+
 
         for (const key in response) {
           if (response.hasOwnProperty(key)) {
             dataArray.push({data: response[key], id: key});
           }
         }
+
         for (const item of dataArray) {
-          this.allEntriesData.push(item.data);
+
+            this.allEntriesData.push(item.data);
         }
         console.log(this.allEntriesData);
         console.log(dataArray);

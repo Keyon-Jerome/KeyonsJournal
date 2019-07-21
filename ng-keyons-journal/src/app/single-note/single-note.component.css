@@ -1,5 +1,6 @@
 .example-card {
-  max-width: 400px;
+  min-width:27.5em;
+  max-width: 500px;
    /* margin-bottom:2.5vw !important; */
    margin:30px !important;
    box-shadow: 5px 5px #383737;
