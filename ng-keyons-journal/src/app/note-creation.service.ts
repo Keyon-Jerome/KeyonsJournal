@@ -40,7 +40,7 @@ openSnackBar() {
   //    {horizontalPosition: 'right',
   // verticalPosition: 'bottom',
   // panelClass: 'snackBarInfo',});
-  const snackBarRef = this.snackBar.open('', 'NEW NOTE', {horizontalPosition: 'right',
+  const snackBarRef = this.snackBar.open('Create a note', 'NEW NOTE', {horizontalPosition: 'right',
   verticalPosition: 'bottom',
   panelClass: 'snackBarInfo', });
   snackBarRef.onAction().subscribe(() => this.openDialog());

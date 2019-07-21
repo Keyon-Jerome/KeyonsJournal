@@ -14,6 +14,7 @@ require("CreateNewUser.php");
 require("EntryReturn.php");
 require("SendEntry.php");
 require("EditEntry.php");
+require("DeleteEntry.php");
 
 // Get the request method
 $method = $_SERVER['REQUEST_METHOD'];
@@ -35,8 +36,11 @@ switch ($method) {
       CreateNewUser::createUser($obj->{"CreateUsername"},$obj->{"CreatePassword"},$obj->{"CreateEmail"});
     }
     // If an entry is being edited:
-    else if(property_exists($obj,"EntryID")) {
+    else if(property_exists($obj,"EntryID") &&  property_exists($obj,"Content")) {
       EditEntry::edit($obj->{"EntryID"},$obj->{"Content"},$obj->{"Header"});
+    }
+    else if(property_exists($obj,"EntryID")) {
+      DeleteEntry::delete($obj->{"EntryID"});
     }
     // If an entry is being created:
     else if(property_exists($obj,"content")) {

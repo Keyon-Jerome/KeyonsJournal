@@ -153,8 +153,35 @@ export class UserService {
       });
 
   }
-  deleteJournalEntry(deleteEntryData:{EntryID:number}) {
-    
+  deleteJournalEntry(deleteEntryData: {EntryID: string}) {
+    this.http.post(this.url, deleteEntryData, this.httpOptions)
+    .pipe(take(2))
+    .subscribe(
+      response => {
+        const dataArray = [];
+
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            dataArray.push({data: response[key], id: key});
+          }
+        }
+        console.log(dataArray);
+        if (dataArray[0].hasOwnProperty('data')) {
+
+          if (dataArray[0].data === 'Entry deleted successfully!') {
+            console.log('Entry deleted successfully!');
+            this.getJournalEntries();
+            return true;
+          } else {
+            console.log('RETRYING DELETE POST REQUEST');
+            retry(1);
+          }
+        } else {
+          console.log('RETRYING DELETE POST REQUEST');
+          retry(1);
+        }
+
+      });
   }
   sendJournalEntry(header: string, content: string) {
     this.updateCurrentEntryData(header, content);
