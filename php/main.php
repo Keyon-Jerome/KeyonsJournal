@@ -34,6 +34,10 @@ switch ($method) {
     if(property_exists($obj,"CreateUsername")) {     
       CreateNewUser::createUser($obj->{"CreateUsername"},$obj->{"CreatePassword"},$obj->{"CreateEmail"});
     }
+    // If an entry is being edited:
+    else if(property_exists($obj,"EntryID")) {
+      EditEntry::edit($obj->{"EntryID"},$obj->{"Content"},$obj->{"Header"});
+    }
     // If an entry is being created:
     else if(property_exists($obj,"content")) {
       SendEntry::sendJournalEntry($obj->{"header"},$obj->{"content"},$obj->{"userID"});
@@ -46,9 +50,7 @@ switch ($method) {
     else if(property_exists($obj,"userID")) {
       EntryReturn::GetEntries($obj->{"userID"});
     }
-    else if(property_exists($obj,"EntryID")) {
-      EditEntry::EditEntry($obj->{"EntryID"},$obj->{"Content"},$obj->{"Header"});
-    }
+
     break;
 
   case 'GET':

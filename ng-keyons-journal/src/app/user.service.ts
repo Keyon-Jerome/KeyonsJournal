@@ -121,9 +121,9 @@ export class UserService {
     this.currentEntryData.userID = this.userID;
   }
 
-  updateJournalEntry(editEntryData: {header: string, content: string, EntryID: string}) {
+  updateJournalEntry(editEntryData: {Header: string, Content: string, EntryID: number}) {
     console.log(editEntryData);
-    this.http.post(this.url, this.currentEntryData, this.httpOptions)
+    this.http.post(this.url, editEntryData, this.httpOptions)
     .pipe(take(2))
     .subscribe(
       response => {
@@ -134,11 +134,12 @@ export class UserService {
             dataArray.push({data: response[key], id: key});
           }
         }
-
+        console.log(dataArray);
         if (dataArray[0].hasOwnProperty('data')) {
 
           if (dataArray[0].data === 'Entry edited successfully!') {
             console.log('Entry edited successfully!');
+            this.getJournalEntries();
             return true;
           } else {
             console.log('RETRYING UPDATE POST REQUEST');
@@ -150,6 +151,7 @@ export class UserService {
         }
 
       });
+
   }
   sendJournalEntry(header: string, content: string) {
     this.updateCurrentEntryData(header, content);
@@ -166,10 +168,11 @@ export class UserService {
           }
         }
 
-        if (dataArray[0].hasOwnProperty('data')) {
+        if (dataArray.length > 0) {
           this.journalEntryCreationStatus = dataArray[0].data;
           if (this.journalEntryCreationStatus === 'Entry created successfully!') {
             // this.addJournalEntry(header, content);
+            this.getJournalEntries();
             return true;
           } else {
             retry(1);
@@ -179,8 +182,7 @@ export class UserService {
         }
 
       });
-
-    this.getLastEntry();
+    // this.getLastEntry();
 
   }
 
@@ -197,24 +199,24 @@ export class UserService {
   //     {Header: header, Content: content, DateSent: _utc.toISOString(), EntryID: 'createdThisSession', UserID: this.userID}
   //     );
   // }
-  getLastEntry() {
+  // getLastEntry() {
 
-      this.http.post(this.url, {userID: this.userID}, this.httpOptions)
-      .pipe(take(1))
-      .subscribe(
-        response => {
-          const dataArray = [];
+  //     this.http.post(this.url, {userID: this.userID}, this.httpOptions)
+  //     .pipe(take(1))
+  //     .subscribe(
+  //       response => {
+  //         const dataArray = [];
 
 
-          for (const key in response) {
-            if (response.hasOwnProperty(key)) {
-              dataArray.push({data: response[key], id: key});
-            }
-          }
-          this.allEntriesData.push(dataArray[dataArray.length - 1].data);
+  //         for (const key in response) {
+  //           if (response.hasOwnProperty(key)) {
+  //             dataArray.push({data: response[key], id: key});
+  //           }
+  //         }
+  //         this.allEntriesData.push(dataArray[dataArray.length - 1].data);
 
-        });
-  }
+  //       });
+  // }
   getJournalEntries() {
     console.log('getting entries');
     // this.allEntriesData = [];
@@ -226,9 +228,14 @@ export class UserService {
 
 
         for (const key in response) {
+          this.allEntriesData.pop();
           if (response.hasOwnProperty(key)) {
             dataArray.push({data: response[key], id: key});
           }
+        }
+        for (const item of this.allEntriesData) {
+          this.allEntriesData.pop();
+          console.log('pop pop');
         }
 
         for (const item of dataArray) {

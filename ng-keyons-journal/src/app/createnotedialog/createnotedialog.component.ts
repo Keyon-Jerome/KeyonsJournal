@@ -73,7 +73,7 @@ export class CreatenotedialogComponent implements OnInit {
     if (!this.isEmptyOrSpaces(this.title.value) || !this.isEmptyOrSpaces(this.content.value) ) {
       if (this.editing) {
         console.log('UPDATING ENTRY: ' + this.data.EntryID);
-        this.userService.updateJournalEntry({header: this.title.value, content: this.content.value, EntryID: this.data.EntryID});
+        this.userService.updateJournalEntry({Header: this.title.value, Content: this.content.value, EntryID: this.data.EntryID});
         this.dialogRef.close();
 
       } else {
