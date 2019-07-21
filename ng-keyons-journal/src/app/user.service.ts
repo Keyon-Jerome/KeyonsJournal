@@ -153,6 +153,9 @@ export class UserService {
       });
 
   }
+  deleteJournalEntry(deleteEntryData:{EntryID:number}) {
+    
+  }
   sendJournalEntry(header: string, content: string) {
     this.updateCurrentEntryData(header, content);
     console.log(this.currentEntryData);
