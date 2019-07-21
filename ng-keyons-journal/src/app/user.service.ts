@@ -29,7 +29,7 @@ export class UserService {
       //  Authorization: 'authkey',
       //  'Content-Type':  'application/json',
       // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-     // 'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token',
+    //  'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token',
       // 'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token, Authorization',
       observe: 'response'
     })
@@ -121,8 +121,35 @@ export class UserService {
     this.currentEntryData.userID = this.userID;
   }
 
-  updateJournalEntry(EntryID: string) {
+  updateJournalEntry(editEntryData: {header: string, content: string, EntryID: string}) {
+    console.log(editEntryData);
+    this.http.post(this.url, this.currentEntryData, this.httpOptions)
+    .pipe(take(2))
+    .subscribe(
+      response => {
+        const dataArray = [];
 
+        for (const key in response) {
+          if (response.hasOwnProperty(key)) {
+            dataArray.push({data: response[key], id: key});
+          }
+        }
+
+        if (dataArray[0].hasOwnProperty('data')) {
+
+          if (dataArray[0].data === 'Entry edited successfully!') {
+            console.log('Entry edited successfully!');
+            return true;
+          } else {
+            console.log('RETRYING UPDATE POST REQUEST');
+            retry(1);
+          }
+        } else {
+          console.log('RETRYING UPDATE POST REQUEST');
+          retry(1);
+        }
+
+      });
   }
   sendJournalEntry(header: string, content: string) {
     this.updateCurrentEntryData(header, content);
@@ -189,6 +216,7 @@ export class UserService {
         });
   }
   getJournalEntries() {
+    console.log('getting entries');
     // this.allEntriesData = [];
     this.http.post(this.url, {userID: this.userID}, this.httpOptions)
     .pipe(take(1))

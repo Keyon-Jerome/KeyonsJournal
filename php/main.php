@@ -13,6 +13,7 @@ require("Login.php");
 require("CreateNewUser.php");
 require("EntryReturn.php");
 require("SendEntry.php");
+require("EditEntry.php");
 
 // Get the request method
 $method = $_SERVER['REQUEST_METHOD'];
@@ -44,6 +45,9 @@ switch ($method) {
     }
     else if(property_exists($obj,"userID")) {
       EntryReturn::GetEntries($obj->{"userID"});
+    }
+    else if(property_exists($obj,"EntryID")) {
+      EditEntry::EditEntry($obj->{"EntryID"},$obj->{"Content"},$obj->{"Header"});
     }
     break;
 

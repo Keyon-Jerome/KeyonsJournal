@@ -13,7 +13,7 @@ import { UserService } from '../user.service';
 export class CreatenotedialogComponent implements OnInit {
   title = new FormControl('');
   content = new FormControl('');
-  sendButton = 'SUBMIT';
+  sendButton = 'Submit';
   dialogTitle = 'New Journal Entry';
   editing = false;
 
@@ -21,7 +21,8 @@ export class CreatenotedialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any, private userService: UserService, public dialog: MatDialog) { }
 
     ngOnInit() {
-      if (this.data !== undefined) {
+      if (this.data !== null) {
+
         this.editing = true;
         this.sendButton = 'Save';
         this.title.setValue(this.data.Header);
@@ -72,7 +73,7 @@ export class CreatenotedialogComponent implements OnInit {
     if (!this.isEmptyOrSpaces(this.title.value) || !this.isEmptyOrSpaces(this.content.value) ) {
       if (this.editing) {
         console.log('UPDATING ENTRY: ' + this.data.EntryID);
-        this.userService.updateJournalEntry(this.data.EntryID);
+        this.userService.updateJournalEntry({header: this.title.value, content: this.content.value, EntryID: this.data.EntryID});
         this.dialogRef.close();
 
       } else {

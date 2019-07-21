@@ -1,5 +1,5 @@
 <?php
-
+header('Access-Control-Allow-Origin: *');
 class EntryReturn {
     
     // Get all entries corresponding to the user ID

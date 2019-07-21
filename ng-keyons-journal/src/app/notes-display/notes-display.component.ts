@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { UserService } from '../user.service';
 
 @Component({
@@ -8,14 +8,18 @@ import { UserService } from '../user.service';
 })
 export class NotesDisplayComponent implements OnInit {
   notes =  this.userService.allEntriesData;
-  
+
   desired_columns = 4;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.userService.getJournalEntries();
-  
   }
+  // ngOnChanges() {
+  //   this.userService.resetJournalEntries();
+
+  //   this.userService.getJournalEntries();
+  // }
 
 }
