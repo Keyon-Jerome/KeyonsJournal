@@ -166,7 +166,7 @@ export class UserService {
           }
         }
         console.log(dataArray);
-        if (dataArray[0].hasOwnProperty('data')) {
+        if (dataArray.length > 0) {
 
           if (dataArray[0].data === 'Entry deleted successfully!') {
             console.log('Entry deleted successfully!');
@@ -274,17 +274,17 @@ export class UserService {
         }
         console.log(this.allEntriesData);
         console.log(dataArray);
-        if (dataArray[0].hasOwnProperty('data')) {
-          // this.journalEntryCreationStatus = dataArray[0]['data'];
-          // if(this.journalEntryCreationStatus == 'Entry created successfully!') {
-          //   return true;
-          // }
-          // else {
-          //   retry(1);
-          // }
-        } else {
-          retry(1);
-        }
+        // if (dataArray[0].hasOwnProperty('data')) {
+        //   // this.journalEntryCreationStatus = dataArray[0]['data'];
+        //   // if(this.journalEntryCreationStatus == 'Entry created successfully!') {
+        //   //   return true;
+        //   // }
+        //   // else {
+        //   //   retry(1);
+        //   // }
+        // } else {
+        //   retry(1);
+        // }
 
       });
   }
