@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
 import {map, take, skip, retry} from 'rxjs/operators';
 import { pipe } from 'rxjs';
 import { Router } from '@angular/router';
+import { getLocaleDateTimeFormat } from '@angular/common';
 
 
 @Injectable({
@@ -136,7 +137,8 @@ export class UserService {
 
         if (dataArray[0].hasOwnProperty('data')) {
           this.journalEntryCreationStatus = dataArray[0].data;
-          if (this.journalEntryCreationStatus == 'Entry created successfully!') {
+          if (this.journalEntryCreationStatus === 'Entry created successfully!') {
+            this.addJournalEntry(header, content);
             return true;
           } else {
             retry(1);
@@ -148,6 +150,21 @@ export class UserService {
       });
 
   }
+
+  addJournalEntry(header: string, content: string) {
+    const currentDate = new Date();
+    const _utc = new Date(currentDate.getUTCFullYear(),
+    currentDate.getUTCMonth(),
+    currentDate.getUTCDate(),
+    currentDate.getUTCHours(),
+    currentDate.getUTCMinutes(),
+    currentDate.getUTCSeconds());
+
+    this.allEntriesData.push(
+      {Header: header, Content: content, DateSent: _utc.toISOString(), EntryID: 'createdThisSession', UserID: this.userID}
+      );
+  }
+
   getJournalEntries() {
     this.http.post(this.url, {userID: this.userID}, this.httpOptions)
     .pipe(take(2))
@@ -160,8 +177,8 @@ export class UserService {
             dataArray.push({data: response[key], id: key});
           }
         }
-        for(const item of dataArray) {
-          this.allEntriesData.push(item['data']);
+        for (const item of dataArray) {
+          this.allEntriesData.push(item.data);
         }
         console.log(this.allEntriesData);
         console.log(dataArray);
