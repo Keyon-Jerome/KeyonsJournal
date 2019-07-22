@@ -27,11 +27,11 @@ export class UserService {
     headers: new HttpHeaders({
       'Access-Control-Allow-Origin': '*',
       //  Authorization: 'authkey',
-      //  'Content-Type':  'application/json',
+      // 'Content-Type':  'application/json',
       // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-    //  'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token',
+      // // 'Access-Control-Request-Headers': 'Origin, Content-Type, X-Auth-Token',
       // 'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token, Authorization',
-      observe: 'response'
+      // observe: 'response'
     })
   };
 
