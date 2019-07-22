@@ -11,7 +11,7 @@ import { getLocaleDateTimeFormat } from '@angular/common';
 })
 export class UserService {
 
-  url = 'http://localhost:8000/KeyonsJournal/php/main.php';
+  url = 'https://keyonjerome.com/keyonsjournalphp/main.php';
 
   createUserData: {CreateUsername: string, CreatePassword: string, CreateEmail: string};
   loginUserData: {loginUsername: string, loginPassword: string};
