@@ -1,11 +1,14 @@
 <?php
-// Headers
+// Headers (for local testing)
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Request-Headers: X-Requested-With, Origin, Content-Type, X-Auth-Token');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, access-control-allow-origin, access-control-allow-headers, access-control-allow-methods, observe');
 // header('Content-type: application/json');
 
+// WORKING HEADERS ON LIVE SERVER:
+// header('Access-Control-Allow-Origin: *');
+// header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token, Authorization, observe, access-control-allow-origin,content-type');
 
 //phpinfo();
 // Dependencies
