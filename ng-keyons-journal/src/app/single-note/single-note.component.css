@@ -1,6 +1,6 @@
 .example-card {
-  min-width:27.5em;
-  max-width: 500px;
+  min-width:20em;
+  max-width: 80vw !important;
    /* margin-bottom:2.5vw !important; */
    margin:30px !important;
    box-shadow: 5px 5px #383737;
@@ -9,5 +9,14 @@
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .example-card {
+    min-width:17em !important;
+/*     
+    width:85vw !important;
+    min-width:70vw !important; */
+  }
 }
 

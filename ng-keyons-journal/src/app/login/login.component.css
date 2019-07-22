@@ -2,6 +2,7 @@
 
   font-family: Roboto;
   font-style: normal;
+  font-size:1em;
   font-weight: 375;
   margin-top:1em;
 /*  line-height: 75px;
@@ -14,7 +15,7 @@
 
   }
   .height100VH {
-    height:100vh;
+    min-height:100vh;
   }
   .mat-input-wrapper {
     background: white;
