@@ -28,7 +28,7 @@ export class SingleNoteComponent implements OnInit {
   }
   onDelete() {
     this.openSnackBar();
-    this.createNoteService.openSnackBar();
+    // this.createNoteService.openSnackBar();
   }
   openSnackBar() {
     // this.snackBar.openFromComponent(AddNoteButtonComponent,
@@ -38,7 +38,12 @@ export class SingleNoteComponent implements OnInit {
     const snackBarRef = this.snackBar.open('Are you sure you want to delete this note?', 'DELETE', {horizontalPosition: 'center',
     verticalPosition: 'top',
     panelClass: 'snackBarInfo', });
-    snackBarRef.onAction().subscribe(() => this.userService.deleteJournalEntry({EntryID: this.EntryID}));
+    snackBarRef.onAction().subscribe(() => this.deleteAndOpenSnackBar());
+
+  }
+  deleteAndOpenSnackBar() {
+    this.userService.deleteJournalEntry({EntryID: this.EntryID});
+    this.createNoteService.openSnackBar();
 
   }
 

@@ -13,6 +13,9 @@ class EditEntry {
 
         // Clean user input
         $EntryID = mysqli_real_escape_string($db_connection,$EntryID);
+        $newContent = mysqli_real_escape_string($db_connection,$newContent);
+        $newHeader = mysqli_real_escape_string($db_connection,$newHeader);
+        
         
         // Define query; get all messages under given ID, and all of their information
         $sql = "UPDATE EntryTable SET Header='$newHeader', Content='$newContent' WHERE EntryID='$EntryID'";
