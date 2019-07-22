@@ -66,6 +66,12 @@ export class UserService {
 
   }
 
+  isAuthenticated() {
+    if (this.userID !== '') {
+      return true;
+    } else { return false; }
+  }
+
   sendLogin(username: string, pass: string) {
     this.userFound = false;
     this.updateLoginUserData(username, pass);
