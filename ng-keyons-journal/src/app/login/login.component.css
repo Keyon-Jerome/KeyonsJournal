@@ -41,6 +41,10 @@
 #x {
   margin-top:-20vh;
 }
+.w-10 {
+  width:5em;
+}
+
 /*
   ::ng-deep.mat-form-field-appearance-fill, .mat-form-field-flex {
   background: rgba(255, 255, 255, 0.5);
@@ -55,6 +59,9 @@
   }
   .roboto {
     font-size:0.5em;
+  }
+  .w-10 {
+    width:3.5em;
   }
 
 }
