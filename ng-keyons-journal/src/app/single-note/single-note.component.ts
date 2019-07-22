@@ -28,6 +28,7 @@ export class SingleNoteComponent implements OnInit {
   }
   onDelete() {
     this.openSnackBar();
+    this.createNoteService.openSnackBar();
   }
   openSnackBar() {
     // this.snackBar.openFromComponent(AddNoteButtonComponent,

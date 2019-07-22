@@ -44,6 +44,7 @@ scrollbar-width: none; /* Firefox */
   /* background-image:url('./assets/undraw_conference_uo36.svg'); */
   /* background-image:url('./assets/flat-mountains.svg');*/
   background-image:url('./assets/confetti-doodles.svg');
+  min-height:100%;
   /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #081F59;
   /* background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #661418; */
   background-repeat: no-repeat;

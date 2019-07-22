@@ -22,12 +22,14 @@ export class CreatenotedialogComponent implements OnInit {
 
     ngOnInit() {
       if (this.data !== null) {
-
-        this.editing = true;
-        this.sendButton = 'Save';
-        this.title.setValue(this.data.Header);
-        this.content.setValue(this.data.Content);
-        this.dialogTitle = 'Edit Journal Entry';
+        if (this.data.Header !== null && this.data.Header !== undefined) {
+          this.editing = true;
+          this.sendButton = 'Save';
+          this.title.setValue(this.data.Header);
+          this.content.setValue(this.data.Content);
+          this.dialogTitle = 'Edit Journal Entry';
+        }
+        if (this.data.FirstEntry) { this.dialogTitle = 'Send your first journal entry!'; }
       }
     }
 
@@ -71,7 +73,7 @@ export class CreatenotedialogComponent implements OnInit {
 }
   onSubmit() {
     if (!this.isEmptyOrSpaces(this.title.value) || !this.isEmptyOrSpaces(this.content.value) ) {
-      if (this.editing) {
+      if (this.editing && this.data !== undefined) {
         console.log('UPDATING ENTRY: ' + this.data.EntryID);
         this.userService.updateJournalEntry({Header: this.title.value, Content: this.content.value, EntryID: this.data.EntryID});
         this.dialogRef.close();

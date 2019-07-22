@@ -9,19 +9,28 @@ export class NoteCreationService {
 
   constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
-  openDialog(data?: {EntryID: string, Header: string, Content: string}): void {
+  openDialog(data?: {EntryID: string, Header: string, Content: string}, firstEntry?: boolean): void {
     console.log('Data:' + data);
     if (data !== undefined) {
       console.log('Wow!');
       console.log(data);
       const dialogRef = this.dialog.open(CreatenotedialogComponent, {
       width: '90vw',
-      data: {EntryID: data.EntryID, Header: data.Header, Content: data.Content},
+      data: {EntryID: data.EntryID, Header: data.Header, Content: data.Content, FirstEntry: firstEntry},
     });
       dialogRef.afterClosed().subscribe(result => {
       this.openSnackBar();
 
     });
+    } else if (firstEntry !== undefined) {
+      const dialogRef = this.dialog.open(CreatenotedialogComponent, {
+        width: '90vw',
+        data: {FirstEntry: firstEntry},
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        this.openSnackBar();
+
+      });
     } else {
 
       const dialogRef = this.dialog.open(CreatenotedialogComponent, {
