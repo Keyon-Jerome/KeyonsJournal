@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   username  = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]);
   password = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
   loginSuccessful = true;
-
+  loginPresses = 0;
 
   constructor(private userService: UserService, public dialog: MatDialog, private router: Router) { }
 
@@ -57,15 +57,21 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    if (this.isFormFinished()) {
+    if (this.isFormFinished() && this.loginPresses == 0) {
       console.log(this.username.value + ' ' + this.password.value);
       this.userService.sendLogin(this.username.value, this.password.value);
+      this.loginPresses++;
       this.loginFailDelay(500);
+
     }
   }
 
   async loginFailDelay(ms: number) {
-    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => this.loginSuccessful = false);
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => this.onLoginFail());
+  }
+  onLoginFail() {
+    this.loginSuccessful = false;
+    this.loginPresses = 0 ;
   }
 
   async delay(ms: number) {

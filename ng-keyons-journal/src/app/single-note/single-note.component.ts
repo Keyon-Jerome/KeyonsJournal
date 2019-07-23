@@ -13,6 +13,8 @@ export class SingleNoteComponent implements OnInit {
   @Input() date: string;
   @Input() content: string;
   @Input() EntryID: string;
+  convertedDate: Date;
+
   constructor(private snackBar: MatSnackBar, private createNoteService: NoteCreationService, private userService: UserService) {
     // this.header = 'CONSTRUCTING';
     // this.content = 'CONSTRUCTING';
@@ -20,6 +22,16 @@ export class SingleNoteComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.convertedDate = new Date(this.date);
+    this.convertedDate.toLocaleString();
+    this.convertedDate.getTimezoneOffset();
+    console.log('\'converted\' date ' + this.convertedDate);
+    console.log('Date before conversion: ' + this.date);
+    console.log(this.date.toLocaleString());
+    this.date = this.date.toLocaleString();
+    this.date += ' Z ';
+    console.log(this.date);
   }
   onEdit() {
     this.createNoteService.openDialog({EntryID: this.EntryID, Header: this.header, Content: this.content});

@@ -16,7 +16,7 @@ export class CreateuserdialogComponent implements OnInit {
   username  = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]);
   password = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
   email = new FormControl('', [Validators.required, Validators.email]);
-
+  createUserPresses = 0;
   constructor( public dialogRef: MatDialogRef<CreateuserdialogComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any, private userService: UserService) { }
 
@@ -45,10 +45,12 @@ export class CreateuserdialogComponent implements OnInit {
     return  this.getEmailErrorMessage() === '' && this.getPasswordErrorMessage() === '' && this.getUsernameErrorMessage() == '';
   }
   onSubmit() {
-    if (this.isFormFinished()) {
+    if (this.isFormFinished() && this.createUserPresses == 0) {
       this.userService.createUser(this.username.value, this.password.value, this.email.value);
       this.createUserDelay(500);
+      this.createUserPresses++;
       this.dialogRef.close();
+
     }
   }
 

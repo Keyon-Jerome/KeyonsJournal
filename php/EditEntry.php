@@ -18,7 +18,7 @@ class EditEntry {
         
         
         // Define query; get all messages under given ID, and all of their information
-        $sql = "UPDATE EntryTable SET Header='$newHeader', Content='$newContent' WHERE EntryID='$EntryID'";
+        $sql = "UPDATE EntryTable SET Header='$newHeader', Content='$newContent', DateSent=now() WHERE EntryID='$EntryID'";
         
         // Run query and save result
         $query_result = mysqli_query($db_connection,$sql);
