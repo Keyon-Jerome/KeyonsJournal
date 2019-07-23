@@ -57,7 +57,9 @@ export class UserService {
       this.updateCreateUserData(username, pass, email);
       this.http.post(this.url, this.createUserData, this.httpOptions).subscribe(responseData => {
         console.log(responseData);
+        
       });
+
   }
 
   updateLoginUserData(username: string, pass: string) {

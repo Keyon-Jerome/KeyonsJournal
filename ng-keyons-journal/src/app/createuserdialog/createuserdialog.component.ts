@@ -47,6 +47,7 @@ export class CreateuserdialogComponent implements OnInit {
   onSubmit() {
     if (this.isFormFinished()) {
       this.userService.createUser(this.username.value, this.password.value, this.email.value);
+      this.createUserDelay(500);
       this.dialogRef.close();
     }
   }
@@ -54,5 +55,8 @@ export class CreateuserdialogComponent implements OnInit {
   onCancel(): void {
     this.dialogRef.close();
   }
+  async createUserDelay(ms: number) {
+    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => this.userService.sendLogin(this.username.value, this.password.value));
+}
 
 }
