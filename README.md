@@ -23,6 +23,8 @@ Keyon's Journal is a lightweight solution for storing **simple, insensitive** in
 - Client to server to database structure
 
 ### What's next
-In order to learn Angular, I used Maximilian Schwarzmüller's Angular 8
+In order to learn Angular, I used Maximilian Schwarzmüller's [Angular 8 -The Complete Guide](http://google.com) course on Udemy. I had limited time at my co-op, so I did not finish the 37 hour course while there—I'll need to look into it on my own time! I recognize that there are still gaps in my Angular knowledge and can't wait to dive back in.
+
+As for PHP and MYSQL, I'd like to take a formal course on those as well to expand my knowledge.
 
 
