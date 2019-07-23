@@ -3,7 +3,7 @@ Full Angular-PHP-MYSQL app for journalling.
 https://keyonsjournal.tk
 
 ## Inspiration
-I made this web app for my co-op at STEP Software.
+I made this web app for my high-school co-op at STEP Software.
 I was challenged by the wonderful people who work there to learn Angular 8, PHP, and MYSQL in 3 weeks to produce a fully-functional app with my time there.
 
 ### Why a journalling app?
@@ -22,8 +22,12 @@ Keyon's Journal is a lightweight solution for storing **simple, insensitive** in
 - TypeScript
 - Client to server to database structure
 
+### How does it work?
+The Angular frontend is hosted on Netlify with a custom domain attached, while the backend and database are hosted on my [main website](https://keyonjerome.com).
+
 ### What's next
-In order to learn Angular, I used Maximilian Schwarzmüller's [Angular 8 -The Complete Guide](http://google.com) course on Udemy. I had limited time at my co-op, so I did not finish the 37 hour course while there—I'll need to look into it on my own time! I recognize that there are still gaps in my Angular knowledge and can't wait to dive back in.
+In order to learn Angular, I used Maximilian Schwarzmüller's [Angular 8 -The Complete Guide](https://www.udemy.com/the-complete-guide-to-angular-2) course on Udemy. I had limited time at my co-op, so I did not finish the 37 hour course while there—I'll need to look into it on my own time! I recognize that there are still gaps in my Angular knowledge and can't wait to dive back in.
+
 
 As for PHP and MYSQL, I'd like to take a formal course on those as well to expand my knowledge.
 
