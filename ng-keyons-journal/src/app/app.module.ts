@@ -26,7 +26,6 @@ import { AddNoteButtonComponent } from './add-note-button/add-note-button.compon
 import {MatSnackBarModule} from '@angular/material';
 import { CreatenotedialogComponent } from './createnotedialog/createnotedialog.component';
 import {KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
-import { KeyboardShortcutComponent } from './keyboard-shortcut/keyboard-shortcut.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +39,6 @@ import { KeyboardShortcutComponent } from './keyboard-shortcut/keyboard-shortcut
     CreateNoteComponent,
     AddNoteButtonComponent,
     CreatenotedialogComponent,
-    KeyboardShortcutComponent
   ],
   imports: [
     BrowserModule,
