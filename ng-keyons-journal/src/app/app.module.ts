@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatBottomSheet} from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -26,6 +26,8 @@ import { AddNoteButtonComponent } from './add-note-button/add-note-button.compon
 import {MatSnackBarModule} from '@angular/material';
 import { CreatenotedialogComponent } from './createnotedialog/createnotedialog.component';
 import {KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
+import { ConfirmDeleteSheetComponent } from './confirm-delete-sheet/confirm-delete-sheet.component';
+import {MatBottomSheetModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import {KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
     CreateNoteComponent,
     AddNoteButtonComponent,
     CreatenotedialogComponent,
+    ConfirmDeleteSheetComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,13 +61,14 @@ import {KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
     MatGridListModule,
     FlexLayoutModule,
     ScrollDispatchModule,
+    MatBottomSheetModule,
     MatSnackBarModule,
     KeyboardShortcutsModule.forRoot()
     // MatDialogRef,
 
   ],
-  providers: [MatDialog],
+  providers: [MatDialog, MatBottomSheet],
   bootstrap: [AppComponent],
-  entryComponents: [CreateuserdialogComponent, AddNoteButtonComponent, CreatenotedialogComponent],
+  entryComponents: [CreateuserdialogComponent, AddNoteButtonComponent, CreatenotedialogComponent, ConfirmDeleteSheetComponent],
 })
 export class AppModule { }

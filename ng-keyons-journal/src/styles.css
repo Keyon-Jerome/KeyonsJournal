@@ -7,7 +7,9 @@
   width:100vw;
   position: absolute;
 }
-
+.backpanel {
+  background: #e1e2eb !important;
+}
 
 .greyRoboto {
   font-family: Roboto;
