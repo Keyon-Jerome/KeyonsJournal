@@ -12,7 +12,7 @@
         </mat-form-field>
   <mat-form-field appearance="fill" class="form-sizer">
       <mat-label class="form-label-color">Password</mat-label>
-      <input #pass matInput placeholder="" [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+      <input #pass matInput placeholder="" [type]="hide ? 'password' : 'text'" [formControl]="password" (keyup.enter)="onSubmit()" required>
       <mat-error *ngIf="password.invalid">{{getPasswordErrorMessage()}}</mat-error>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

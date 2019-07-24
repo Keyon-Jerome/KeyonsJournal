@@ -13,7 +13,7 @@ import { FormControl, Validators } from '@angular/forms';
 export class CreateuserdialogComponent implements OnInit {
   hide = true;
   form: {username: string, password: string, email: string};
-  username  = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]);
+  username  = new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(15)]);
   password = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
   email = new FormControl('', [Validators.required, Validators.email]);
   createUserPresses = 0;
@@ -31,7 +31,7 @@ export class CreateuserdialogComponent implements OnInit {
             '';
   }
   getUsernameErrorMessage() {
-    if (this.username.hasError('required')) { return 'You must enter a value'; } else if (this.username.hasError('minlength')) { return 'Username must be at least 5 characters long'; } else if (this.username.hasError('maxlength')) { return 'Username must be under 16 characters long.'; } else {
+    if (this.username.hasError('required')) { return 'You must enter a value'; } else if (this.username.hasError('minlength')) { return 'Username must be at least 1 character long.'; } else if (this.username.hasError('maxlength')) { return 'Username must be under 16 characters long.'; } else {
       return '';
       }
   }
