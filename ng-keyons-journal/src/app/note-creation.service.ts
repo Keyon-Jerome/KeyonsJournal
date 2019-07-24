@@ -10,6 +10,7 @@ export class NoteCreationService {
   constructor(public dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   openDialog(data?: {EntryID: string, Header: string, Content: string}, firstEntry?: boolean): void {
+    if (this.dialog.openDialogs.length > 0) { return; }
     console.log('Data:' + data);
     if (data !== undefined) {
       console.log('Wow!');

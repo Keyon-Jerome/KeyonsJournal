@@ -99,7 +99,8 @@ class CreateNewUser {
 
     public static function generateHash($password) {
         // return password_hash($password,PASSWORD_BCRYPT);
-        return md5($password);
+        // return md5($password);
+        return hash('sha512', $password);
     }
 
 

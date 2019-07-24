@@ -25,6 +25,8 @@ import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 import { AddNoteButtonComponent } from './add-note-button/add-note-button.component';
 import {MatSnackBarModule} from '@angular/material';
 import { CreatenotedialogComponent } from './createnotedialog/createnotedialog.component';
+import {KeyboardShortcutsModule } from 'ng-keyboard-shortcuts';
+import { KeyboardShortcutComponent } from './keyboard-shortcut/keyboard-shortcut.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { CreatenotedialogComponent } from './createnotedialog/createnotedialog.c
     SingleNoteComponent,
     CreateNoteComponent,
     AddNoteButtonComponent,
-    CreatenotedialogComponent
+    CreatenotedialogComponent,
+    KeyboardShortcutComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { CreatenotedialogComponent } from './createnotedialog/createnotedialog.c
     MatGridListModule,
     FlexLayoutModule,
     ScrollDispatchModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    KeyboardShortcutsModule.forRoot()
     // MatDialogRef,
 
   ],
