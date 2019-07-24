@@ -32,3 +32,7 @@ In order to learn Angular, I used Maximilian Schwarzmüller's [Angular 8 -The Co
 As for PHP and MYSQL, I'd like to take a formal course on those as well to expand my knowledge.
 
 
+View the initial front-end design of this project: https://www.figma.com/file/B5q01JjGln1Z90OXXQ6VWHmv/Frontend?node-id=0%3A1
+
+
+
