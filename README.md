@@ -25,6 +25,8 @@ Keyon's Journal is a lightweight solution for storing **simple, insensitive** in
 ### How does it work?
 The Angular frontend is hosted on Netlify with a custom domain attached, while the backend and database are hosted on my [main website](https://keyonjerome.com).
 
+### Hint: You can press CTRL + B to create a new note quickly!
+
 ### What's next
 In order to learn Angular, I used Maximilian Schwarzmüller's [Angular 8 -The Complete Guide](https://www.udemy.com/the-complete-guide-to-angular-2) course on Udemy. I had limited time at my co-op, so I did not finish the 37 hour course while there—I'll need to look into it on my own time! I recognize that there are still gaps in my Angular knowledge and can't wait to dive back in.
 
