@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   shortcuts: ShortcutInput[] = [];
   ngOnInit() {
     this.openSnackBar();
+    this.dialog.closeAll();
   }
   ngAfterViewInit() {
     this.shortcuts.push(            {

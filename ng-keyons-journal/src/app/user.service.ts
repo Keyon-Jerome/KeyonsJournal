@@ -17,7 +17,9 @@ export class UserService {
   loginUserData: {loginUsername: string, loginPassword: string};
   currentEntryData: {header: string, content: string, userID: string};
   allEntriesData: {Header: string, Content: string, DateSent: string, EntryID: string, UserID: string}[];
-
+  
+  failedUserCreation = false;
+  failedUserCreationMessage = '';
   userID = '';
   userFound: boolean;
   journalEntryCreationStatus = 'Unused';
@@ -56,7 +58,21 @@ export class UserService {
       console.log(username + ' ' + pass + ' ' + email);
       this.updateCreateUserData(username, pass, email);
       this.http.post(this.url, this.createUserData, this.httpOptions).subscribe(responseData => {
+        console.log("Response data below.");
         console.log(responseData);
+        console.log(responseData['status']);
+        if(responseData['status'] == 'Username already exists.') {
+          this.failedUserCreationMessage = responseData['status'];
+          this.failedUserCreation = true;
+          console.log("this is gettin run");
+        }
+        else {
+          console.log("else");
+          this.sendLogin(this.createUserData.CreateUsername,this.createUserData.CreatePassword);
+          this.failedUserCreationMessage = '';
+          this.failedUserCreation = false;
+        }
+        
         
       });
 

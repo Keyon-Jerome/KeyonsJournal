@@ -17,6 +17,7 @@ export class CreateuserdialogComponent implements OnInit {
   password = new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(24)]);
   email = new FormControl('', [Validators.required, Validators.email]);
   createUserPresses = 0;
+  pressTime = Date.now();
   constructor( public dialogRef: MatDialogRef<CreateuserdialogComponent>,
                @Inject(MAT_DIALOG_DATA) public data: any, private userService: UserService) { }
 
@@ -40,25 +41,39 @@ export class CreateuserdialogComponent implements OnInit {
       return '';
       }
   }
+  getUserCreationErrorMessage() {
+    // if(this.userService.failedUserCreation) {
+      return this.userService.failedUserCreationMessage;
+    // }
+  }
 
   isFormFinished() {
     return  this.getEmailErrorMessage() === '' && this.getPasswordErrorMessage() === '' && this.getUsernameErrorMessage() == '';
   }
   onSubmit() {
-    if (this.isFormFinished() && this.createUserPresses == 0) {
+    if (this.isFormFinished() && Date.now() >= this.pressTime+1000) {
+      console.log("create user request sent");
       this.userService.createUser(this.username.value, this.password.value, this.email.value);
-      this.createUserDelay(500);
+      // this.createUserDelay(500);
       this.createUserPresses++;
-      this.dialogRef.close();
+      this.pressTime = Date.now();
+      
+      // this.dialogRef.close();
 
     }
+    else {
+      console.log(this.isFormFinished());
+      console.log(Date.now);
+      console.log(this.pressTime+1000);
+    }
+    // else if(this.isFormFinished())
   }
 
   onCancel(): void {
     this.dialogRef.close();
   }
-  async createUserDelay(ms: number) {
-    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => this.userService.sendLogin(this.username.value, this.password.value));
-}
+//   async createUserDelay(ms: number) {
+//     await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => this.userService.sendLogin(this.username.value, this.password.value));
+// }
 
 }

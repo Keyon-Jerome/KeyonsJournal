@@ -20,11 +20,13 @@
     </mat-form-field>
 
   </div>
+  <mat-error>{{getUserCreationErrorMessage()}}</mat-error>
 
 <div mat-dialog-actions>
     <!-- [mat-dialog-close]="data.animal" -->
   <button mat-button (click)="onCancel()">Cancel</button>
   <button mat-button  cdkFocusInitial (click)="onSubmit()">Submit</button>
+  
   <!--<mat-error *ngIf="isFormFinished()">Form not finished.</mat-error>-->
 </div>
 <style>
